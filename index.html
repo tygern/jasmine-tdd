@@ -81,7 +81,45 @@
 				</section>
 
 				<section>
+          <p>The <code>describe</code> function helps to organize tests</p>
 
+          <pre><code data-trim>
+describe('square', function () {
+
+
+
+
+
+});
+					</code></pre>
+				</section>
+
+				<section>
+          <p>The <code>it</code> function runs a test function</p>
+
+          <pre><code data-trim>
+describe('square', function () {
+  it('squares the number', function () {
+
+
+
+  });
+});
+					</code></pre>
+				</section>
+
+				<section>
+          <p>The <code>expect</code> function defines the expected behavior</p>
+
+          <pre><code data-trim>
+describe('square', function () {
+  it('squares the number', function () {
+    expect(square(1)).to equal(1);
+    expect(square(3)).to equal(9);
+    expect(square(-4)).to equal(16);
+  });
+});
+					</code></pre>
 				</section>
 			</div>
 
@@ -100,7 +138,7 @@
 				history: true,
 				center: true,
 
-				transition: 'slide', // none/fade/slide/convex/concave/zoom
+				transition: 'none', // none/fade/slide/convex/concave/zoom
 
 				// Optional reveal.js plugins
 				dependencies: [
