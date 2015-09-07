@@ -9,6 +9,10 @@ div.pivotal-labs-logo {
   float: right;
 }
 
+p code {
+  color: #00A28D;
+}
+
 .reveal section img {
   background: none;
   border: none;
