@@ -27,3 +27,15 @@ div.pivotal-labs-logo {
 .green {
   color: #17ff2e;
 }
+
+.columns {
+  display: flex;
+}
+
+.columns div {
+  flex: 1;
+}
+
+.columns div:not:last-child {
+  margin-right: 2em;
+}

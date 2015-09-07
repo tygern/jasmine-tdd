@@ -83,7 +83,7 @@
 				<section>
           <p>The <code>describe</code> function helps to organize tests</p>
 
-          <pre><code data-trim>
+          <pre><code class="javascript" data-trim>
 describe('square', function () {
 
 
@@ -97,7 +97,7 @@ describe('square', function () {
 				<section>
           <p>The <code>it</code> function runs a test function</p>
 
-          <pre><code data-trim>
+          <pre><code class="javascript" data-trim>
 describe('square', function () {
   it('squares the number', function () {
 
@@ -111,16 +111,122 @@ describe('square', function () {
 				<section>
           <p>The <code>expect</code> function defines the expected behavior</p>
 
-          <pre><code data-trim>
+          <pre><code class="javascript" data-trim>
 describe('square', function () {
   it('squares the number', function () {
-    expect(square(1)).to equal(1);
-    expect(square(3)).to equal(9);
-    expect(square(-4)).to equal(16);
+    expect(square(1)).toEqual(1);
+    expect(square(3)).toEqual(9);
+    expect(square(-4)).toEqual(16);
   });
 });
 					</code></pre>
 				</section>
+
+				<section>
+          <p>The <code>toEqual</code> matcher function checks for equality</p>
+
+          <pre><code class="javascript" data-trim>
+describe('square', function () {
+  it('squares the number', function () {
+    expect(square(1)).toEqual(1);
+    expect(square(3)).toEqual(9);
+    expect(square(-4)).toEqual(16);
+  });
+});
+					</code></pre>
+				</section>
+
+				<section>
+          <p>Jasmine has lots of useful matchers</p>
+
+          <pre><code class="javascript" data-trim>
+describe('square', function () {
+  it('squares the number', function () {
+    expect(square(1)).toEqual(1);
+    expect(square(3)).not.toEqual(8);
+    expect(square(5)).toBeGreaterThan(20);
+    expect(square("a")).toBeUndefined;
+  });
+});
+					</code></pre>
+				</section>
+
+				<section>
+					<img src="img/angular.png" alt="Jasmine">
+					<h2>AngularJS</h2>
+					<p>framework for JavaScript applications</p>
+				</section>
+
+				<section>
+					<code>html</code> views are annotated with attributes
+
+					<pre><code class="html" data-trim>
+<div ng-app="sampleApplication">
+  <div ng-controller="WelcomeController">
+    <h2>{{message}}</h2>
+  </div>
+</div>
+					</code></pre>
+
+          which angular uses to define DOM behavior
+
+					<pre><code class="javascript" data-trim>
+angular.module('sampleApplication')
+  .controller('WelcomeController', function () {
+    $scope.message = 'hello';
+  });
+					</code></pre>
+				</section>
+
+				<section>
+					Dependency injection helps to make angular testable.
+
+					<pre><code class="javascript" data-trim>
+angular.module('sampleApplication')
+  .controller('WelcomeController', function (messageService) {
+    $scope.message = messageService.getMessage();
+  });
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Testing Angular</h2>
+
+          <ul>
+            <li>End to end tests - Protractor</li>
+            <li>Unit tests - Jasmine</li>
+          </ul>
+        </section>
+
+				<section>
+					<h2>Top Contributers</h2>
+
+          Let's test drive a sample angular application that shows the list of top github contributers in Dublin.
+        </section>
+
+        <section>
+					<h2>Test setup</h2>
+
+          <pre><code class="javascript" data-trim>
+describe('UsersController', function () {
+  var $scope, externalService;
+
+  beforeEach(module('topContributers'));
+
+  beforeEach(inject(function ($rootScope,
+                              $controller,
+                              _externalService_) {
+    $scope = $rootScope.$new();
+    externalService = _externalService_;
+
+    $controller('UsersController');
+  }));
+
+  // tests go here
+});
+					</code></pre>
+				</section>
+
 			</div>
 
 		</div>
