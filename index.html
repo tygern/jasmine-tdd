@@ -39,6 +39,7 @@
 		<div class="reveal">
 
 			<div class="slides">
+        <!--Title-->
 				<section>
 					<h1>TDD</h1>
 					<h3>With Jasmine and Angular</h3>
@@ -48,24 +49,26 @@
 					<div class="pivotal-labs-logo"></div>
 				</section>
 
-				<section>
-					<h2>What is TDD?</h2>
-					<ul>
-						<li>Don't write a line of new code unless you first have a failing automated test.</li>
-						<li>Eliminate duplication.</li>
-					</ul>
-				</section>
+        <!--TDD Basics-->
+        <section>
+          <section>
+            <h2>What is TDD?</h2>
+            <ul>
+              <li>Don't write a line of new code unless you first have a failing automated test.</li>
+              <li>Eliminate duplication.</li>
+            </ul>
+          </section>
 
-				<section>
-					<h2>What is TDD?</h2>
-					<ul>
-						<li><span class="highlight red">Red</span> — write a short failing test</li>
-						<li><span class="highlight green">Green</span> — make the test pass in the simplest way possible</li>
-						<li><span class="highlight">Refactor</span> — eliminate duplication introduced in the previous step</li>
-					</ul>
-				</section>
+          <section>
+            <h2>What is TDD?</h2>
+            <ul>
+              <li><span class="highlight red">Red</span> — write a short failing test</li>
+              <li><span class="highlight green">Green</span> — make the test pass in the simplest way possible</li>
+              <li><span class="highlight">Refactor</span> — eliminate duplication introduced in the previous step</li>
+            </ul>
+          </section>
 
-				<section>
+          <section>
 					<h2>Why practice TDD?</h2>
 					<ul>
 						<li>Reduces number of defects</li>
@@ -74,16 +77,19 @@
 						<li>Documents behavior of code</li>
 					</ul>
 				</section>
+        </section>
 
-				<section>
-					<img src="img/jasmine_vertical.png" alt="Jasmine">
-					<p>framework for testing JavaScript code</p>
-				</section>
+        <!--Jasmine-->
+        <section>
+          <section>
+            <img src="img/jasmine_vertical.png" alt="Jasmine">
+            <p>framework for testing JavaScript code</p>
+          </section>
 
-				<section>
-          <p>The <code>describe</code> function helps to organize tests</p>
+          <section>
+            <p>The <code>describe</code> function helps to organize tests</p>
 
-          <pre><code class="javascript" data-trim>
+            <pre><code class="javascript" data-trim>
 describe('square', function () {
 
 
@@ -91,13 +97,13 @@ describe('square', function () {
 
 
 });
-					</code></pre>
-				</section>
+            </code></pre>
+          </section>
 
-				<section>
-          <p>The <code>it</code> function runs a test function</p>
+          <section>
+            <p>The <code>it</code> function runs a test function</p>
 
-          <pre><code class="javascript" data-trim>
+            <pre><code class="javascript" data-trim>
 describe('square', function () {
   it('squares the number', function () {
 
@@ -105,27 +111,13 @@ describe('square', function () {
 
   });
 });
-					</code></pre>
-				</section>
+            </code></pre>
+          </section>
 
-				<section>
-          <p>The <code>expect</code> function defines the expected behavior</p>
+          <section>
+            <p>The <code>expect</code> function defines the expected behavior</p>
 
-          <pre><code class="javascript" data-trim>
-describe('square', function () {
-  it('squares the number', function () {
-    expect(square(1)).toEqual(1);
-    expect(square(3)).toEqual(9);
-    expect(square(-4)).toEqual(16);
-  });
-});
-					</code></pre>
-				</section>
-
-				<section>
-          <p>The <code>toEqual</code> matcher function checks for equality</p>
-
-          <pre><code class="javascript" data-trim>
+            <pre><code class="javascript" data-trim>
 describe('square', function () {
   it('squares the number', function () {
     expect(square(1)).toEqual(1);
@@ -133,13 +125,27 @@ describe('square', function () {
     expect(square(-4)).toEqual(16);
   });
 });
-					</code></pre>
-				</section>
+            </code></pre>
+          </section>
 
-				<section>
-          <p>Jasmine has lots of useful matchers</p>
+          <section>
+            <p>The <code>toEqual</code> matcher function checks for equality</p>
 
-          <pre><code class="javascript" data-trim>
+            <pre><code class="javascript" data-trim>
+describe('square', function () {
+  it('squares the number', function () {
+    expect(square(1)).toEqual(1);
+    expect(square(3)).toEqual(9);
+    expect(square(-4)).toEqual(16);
+  });
+});
+            </code></pre>
+          </section>
+
+          <section>
+            <p>Jasmine has lots of useful matchers</p>
+
+            <pre><code class="javascript" data-trim>
 describe('square', function () {
   it('squares the number', function () {
     expect(square(1)).toEqual(1);
@@ -148,76 +154,232 @@ describe('square', function () {
     expect(square("a")).toBeUndefined;
   });
 });
+            </code></pre>
+          </section>
+
+          <section>
+            <p><code>beforeEach</code> helps to conduct test setup</p>
+
+            <pre><code class="javascript" data-trim>
+var timeProvider;
+
+beforeEach(function () {
+  timeProvider = {
+    dayOfWeek: 'Thursday'
+  };
+});
+            </code></pre>
+          </section>
+
+          <section>
+            <p><code>spyOn</code> allows for easy mocking</p>
+
+            <pre><code class="javascript" data-trim>
+// setup
+
+it('tracks calls and arguments', function () {
+  spyOn(timeProvider, 'dayOfWeek').and.returnValue('Monday');
+
+  var result = timeProvider.dayOfWeek('capitalize');
+
+
+
+
+
+});
+            </code></pre>
+          </section>
+
+          <section>
+            <p><code>spyOn</code> allows for easy mocking</p>
+
+            <pre><code class="javascript" data-trim>
+// setup
+
+it('tracks calls and arguments', function () {
+  spyOn(timeProvider, 'dayOfWeek').and.returnValue('Monday');
+
+  var result = timeProvider.dayOfWeek('capitalize');
+
+  expect(result).toEqual('Monday');
+
+
+
+});
+            </code></pre>
+          </section>
+
+          <section>
+            <p><code>spyOn</code> allows for easy mocking</p>
+
+            <pre><code class="javascript" data-trim>
+// setup
+
+it('tracks calls and arguments', function () {
+  spyOn(timeProvider, 'dayOfWeek').and.returnValue('Monday');
+
+  var result = timeProvider.dayOfWeek('capitalize');
+
+  expect(result).toEqual('Monday');
+  expect(timeProvider.dayOfWeek).toHaveBeenCalled();
+
+
+});
+            </code></pre>
+          </section>
+
+          <section>
+            <p><code>spyOn</code> allows for easy mocking</p>
+
+            <pre><code class="javascript" data-trim>
+// setup
+
+it('tracks calls and arguments', function () {
+  spyOn(timeProvider, 'dayOfWeek').and.returnValue('Monday');
+
+  var result = timeProvider.dayOfWeek('capitalize');
+
+  expect(result).toEqual('Monday');
+  expect(timeProvider.dayOfWeek).toHaveBeenCalled();
+  expect(timeProvider.dayOfWeek).toHaveBeenCalledWith('capitalize');
+
+});
+            </code></pre>
+          </section>
+
+          <section>
+          <p><code>spyOn</code> allows for easy mocking</p>
+
+          <pre><code class="javascript" data-trim>
+// setup
+
+it('tracks calls and arguments', function () {
+  spyOn(timeProvider, 'dayOfWeek').and.returnValue('Monday');
+
+  var result = timeProvider.dayOfWeek('capitalize');
+
+  expect(result).toEqual('Monday');
+  expect(timeProvider.dayOfWeek).toHaveBeenCalled();
+  expect(timeProvider.dayOfWeek).toHaveBeenCalledWith('capitalize');
+  expect(timeProvider.dayOfWeek.calls.count()).toEqual(1);
+});
 					</code></pre>
-				</section>
 
-				<section>
-					<img src="img/angular.png" alt="Jasmine">
-					<h2>AngularJS</h2>
-					<p>framework for JavaScript applications</p>
-				</section>
+        </section>
+        </section>
 
-				<section>
-					<code>html</code> views are annotated with attributes
+        <!--AngularJS-->
+        <section>
+          <section>
+            <img src="img/angular.png" alt="Jasmine">
+            <h2>AngularJS</h2>
+            <p>framework for JavaScript applications</p>
+          </section>
 
-					<pre><code class="html" data-trim>
-<div ng-app="sampleApplication">
-  <div ng-controller="WelcomeController">
-    <h2>{{message}}</h2>
+          <section>
+            <p><code>html</code> views are annotated with attributes</p>
+
+            <pre><code class="html" data-trim>
+  <div ng-app="sampleApplication">
+    <div ng-controller="WelcomeController">
+      <h2>{{message}}</h2>
+    </div>
   </div>
-</div>
-					</code></pre>
+            </code></pre>
 
-          which angular uses to define DOM behavior
+            <p>which angular uses to define DOM behavior</p>
 
-					<pre><code class="javascript" data-trim>
+            <pre><code class="javascript" data-trim>
 angular.module('sampleApplication')
   .controller('WelcomeController', function () {
     $scope.message = 'hello';
   });
-					</code></pre>
-				</section>
+            </code></pre>
+          </section>
 
-				<section>
-					Dependency injection helps to make angular testable.
+          <section>
+            <p>Dependency injection helps to make angular testable.</p>
 
-					<pre><code class="javascript" data-trim>
+            <pre><code class="javascript" data-trim>
 angular.module('sampleApplication')
   .controller('WelcomeController', function (messageService) {
     $scope.message = messageService.getMessage();
   });
-					</code></pre>
-				</section>
+            </code></pre>
+          </section>
 
-				<section>
-					<h2>Testing Angular</h2>
+          <section>
+            <h2>Testing Angular</h2>
 
-          <ul>
-            <li>End to end tests - Protractor</li>
-            <li>Unit tests - Jasmine</li>
-          </ul>
-        </section>
+            <ul>
+              <li>End to end tests - Protractor</li>
+              <li>Unit tests - Jasmine</li>
+            </ul>
+          </section>
 
-				<section>
-					<h2>Top Contributers</h2>
+          <section>
+            <h2>Top Contributers</h2>
 
-          Let's test drive a sample angular application that shows the list of top github contributers in Dublin.
-        </section>
+            <p>
+              Let's test drive a sample angular application that shows the
+              list of top github contributers in Dublin.
+            </p>
+          </section>
 
-        <section>
-					<h2>Test setup</h2>
+          <section>
+            <h2>Test setup</h2>
+
+            <pre><code class="javascript" data-trim>
+describe('UsersController', function () {
+  var $scope;
+
+  beforeEach(module('topContributors'));
+
+  beforeEach(inject(function ($rootScope,
+                              $controller) {
+    $scope = $rootScope.$new();
+
+    $controller('UsersController');
+  }));
+
+  // tests go here
+});
+            </code></pre>
+          </section>
+
+          <section>
+            <h2>First test</h2>
+            <pre><code class="javascript" data-trim>
+describe('UsersController', function () {
+  // setup
+
+  describe('when the controller starts', function () {
+    it('loads the message', function () {
+      expect($scope.message).toEqual('hello');
+    });
+  });
+});
+            </code></pre>
+          </section>
+
+          <section>
+          <h2>Testing asynchronous code</h2>
 
           <pre><code class="javascript" data-trim>
 describe('UsersController', function () {
-  var $scope, externalService;
+  var $scope, githubService, githubDeferred;
 
-  beforeEach(module('topContributers'));
+  beforeEach(module('topContributors'));
 
   beforeEach(inject(function ($rootScope,
                               $controller,
-                              _externalService_) {
+                              $q,
+                              _githubService_) {
     $scope = $rootScope.$new();
-    externalService = _externalService_;
+    githubService = _githubService_;
+
+    githubDeferred = $q.defer();
+    spyOn(githubService, 'fetchUsers').and.returnValue(githubDeferred.promise)
 
     $controller('UsersController');
   }));
@@ -225,8 +387,8 @@ describe('UsersController', function () {
   // tests go here
 });
 					</code></pre>
-				</section>
-
+        </section>
+        </section>
 			</div>
 
 		</div>
