@@ -363,35 +363,49 @@ describe('UsersController', function () {
           </section>
 
           <section>
-          <h2>Testing asynchronous code</h2>
+            <h2>Setup for asynchronous test</h2>
 
-          <pre><code class="javascript" data-trim>
+            <pre><code class="javascript" data-trim>
 describe('UsersController', function () {
   var $scope, githubService, githubDeferred;
-
   beforeEach(module('topContributors'));
 
-  beforeEach(inject(function ($rootScope,
-                              $controller,
-                              $q,
+  beforeEach(inject(function ($rootScope, $controller, $q,
                               _githubService_) {
     $scope = $rootScope.$new();
     githubService = _githubService_;
 
     githubDeferred = $q.defer();
-    spyOn(githubService, 'fetchUsers').and.returnValue(githubDeferred.promise)
+    spyOn(githubService, 'fetchUsers')
+            .and.returnValue(githubDeferred.promise);
 
     $controller('UsersController');
   }));
-
-  // tests go here
 });
-					</code></pre>
-        </section>
-        </section>
-			</div>
+					  </code></pre>
+          </section>
 
-		</div>
+          <section>
+            <h2>Asynchronous test</h2>
+            <pre><code class="javascript" data-trim>
+describe('UsersController', function () {
+  // setup
+
+  describe('when the controller starts', function () {
+    it('fetches the users from GitHub', function () {
+      githubDeferred.resolve([{login: 'testUser'}]);
+      $scope.$apply();
+
+      expect($scope.users).toEqual([{login: 'testUser'}]);
+    });
+  });
+});
+            </code></pre>
+          </section>
+        </section>
+      </div>
+
+    </div>
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.js"></script>
