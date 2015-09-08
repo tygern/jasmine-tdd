@@ -278,7 +278,6 @@ it('tracks calls and arguments', function () {
 
           <section>
             <p><code>html</code> views are annotated with attributes</p>
-
             <pre><code class="html" data-trim>
   <div ng-app="sampleApplication">
     <div ng-controller="WelcomeController">
@@ -288,7 +287,6 @@ it('tracks calls and arguments', function () {
             </code></pre>
 
             <p>which angular uses to define DOM behavior</p>
-
             <pre><code class="javascript" data-trim>
 angular.module('sampleApplication')
   .controller('WelcomeController', function () {
@@ -299,10 +297,9 @@ angular.module('sampleApplication')
 
           <section>
             <p>Dependency injection helps to make angular testable.</p>
-
             <pre><code class="javascript" data-trim>
 angular.module('sampleApplication')
-  .controller('WelcomeController', function (messageService) {
+  .controller('WelcomeController', function ($scope, messageService) {
     $scope.message = messageService.getMessage();
   });
             </code></pre>
@@ -310,7 +307,6 @@ angular.module('sampleApplication')
 
           <section>
             <h2>Testing Angular</h2>
-
             <ul>
               <li>End to end tests - Protractor</li>
               <li>Unit tests - Jasmine</li>
@@ -318,28 +314,18 @@ angular.module('sampleApplication')
           </section>
 
           <section>
-            <h2>Top Contributers</h2>
-
-            <p>
-              Let's test drive a sample angular application that shows the
-              list of top github contributers in Dublin.
-            </p>
-          </section>
-
-          <section>
             <h2>Test setup</h2>
-
             <pre><code class="javascript" data-trim>
-describe('UsersController', function () {
+describe('WelcomeController', function () {
   var $scope;
 
-  beforeEach(module('topContributors'));
+  beforeEach(module('sampleApplication'));
 
   beforeEach(inject(function ($rootScope,
                               $controller) {
     $scope = $rootScope.$new();
 
-    $controller('UsersController');
+    $controller('WelcomeController');
   }));
 
   // tests go here
@@ -350,7 +336,7 @@ describe('UsersController', function () {
           <section>
             <h2>First test</h2>
             <pre><code class="javascript" data-trim>
-describe('UsersController', function () {
+describe('WelcomeController', function () {
   // setup
 
   describe('when the controller starts', function () {
@@ -361,10 +347,20 @@ describe('UsersController', function () {
 });
             </code></pre>
           </section>
+        </section>
+
+        <!--Sample app-->
+        <section>
+          <section>
+            <h2>Top Contributers</h2>
+            <p>
+              Let's test drive a sample angular application that shows the
+              list of top github users in Dublin.
+            </p>
+          </section>
 
           <section>
             <h2>Setup for asynchronous test</h2>
-
             <pre><code class="javascript" data-trim>
 describe('UsersController', function () {
   var $scope, githubService, githubDeferred;
@@ -401,6 +397,49 @@ describe('UsersController', function () {
   });
 });
             </code></pre>
+          </section>
+
+          <section>
+            <h2>Testing ajax calls</h2>
+            <pre><code class="javascript" data-trim>
+describe('githubService', function () {
+  var githubService;
+  beforeEach(module('topContributors'));
+
+  beforeEach(inject(function ($httpBackend,
+                              _githubService_) {
+    githubService = _githubService_;
+  }));
+
+  // tests
+});
+					  </code></pre>
+          </section>
+
+          <section>
+            <h2>Testing ajax calls</h2>
+            <pre><code class="javascript" data-trim>
+describe('githubService', function() {
+  // setup
+
+  describe('#getUsers', function() {
+    it('gets users from GitHub', function() {
+      $httpBackend
+        .expectGET('https://api.github.com/search/users' +
+        '?q=location:Dublin' +
+        '&sort=followers'
+      )
+        .respond({items: ['user']});
+
+      githubService.getUsers().then(function(response) {
+        expect(response).toEqual(['user']);
+      });
+
+      $httpBackend.flush();
+    });
+  });
+});
+					  </code></pre>
           </section>
         </section>
       </div>
