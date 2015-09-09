@@ -265,7 +265,55 @@ it('tracks calls and arguments', function () {
 });
 					</code></pre>
 
-        </section>
+          </section>
+
+          <section>
+            <h2>Testing Asynchronous Code</h2>
+
+            <p>
+              Jasmine passes a <code>done</code> function as an argument to each function
+              passed to <code>it</code>.
+            </p>
+
+            <pre><code class="javascript" data-trim>
+it('takes done as an argument', function (done) {
+
+});
+            </code></pre>
+          </section>
+
+          <section>
+            <h2>Testing Asynchronous Code</h2>
+
+            <p>
+              A test will not pass until <code>done</code> has been called.
+            </p>
+
+            <pre><code class="javascript" data-trim>
+it('takes done as an argument', function (done) {
+  done();
+});
+            </code></pre>
+          </section>
+
+          <section>
+            <h2>Testing Asynchronous Code</h2>
+
+            <p>
+              By default, Jasmine will wait five seconds for <code>done</code> to be called
+              before failing a test
+            </p>
+
+            <pre><code class="javascript" data-trim>
+it('will pass', function (done) {
+  setTimeout(done, 4000);
+});
+
+it('will fail', function (done) {
+  setTimeout(done, 6000);
+});
+            </code></pre>
+          </section>
         </section>
 
         <!--AngularJS-->
@@ -360,7 +408,7 @@ describe('WelcomeController', function () {
           </section>
 
           <section>
-            <h2>Setup for asynchronous test</h2>
+            <h2>Testing promises</h2>
             <pre><code class="javascript" data-trim>
 describe('UsersController', function () {
   var $scope, githubService, githubDeferred;
@@ -382,7 +430,7 @@ describe('UsersController', function () {
           </section>
 
           <section>
-            <h2>Asynchronous test</h2>
+            <h2>Testing promises</h2>
             <pre><code class="javascript" data-trim>
 describe('UsersController', function () {
   // setup
@@ -426,9 +474,7 @@ describe('githubService', function() {
     it('gets users from GitHub', function() {
       $httpBackend
         .expectGET('https://api.github.com/search/users' +
-        '?q=location:Dublin' +
-        '&sort=followers'
-      )
+        '?q=location:Dublin&sort=followers')
         .respond({items: ['user']});
 
       githubService.getUsers().then(function(response) {
