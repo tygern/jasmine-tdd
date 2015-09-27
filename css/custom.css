@@ -2,24 +2,53 @@ div.pivotal-labs {
   background-image: url(../img/PivotalLabs-Logo-OnDark.png);
   height: 100px;
   width: 419px;
+  background-size: 100% 100%;
 }
 
 div.jasmine {
   background-image: url(../img/jasmine_vertical.png);
   height: 190px;
   width: 190px;
+  background-size: 100% 100%;
 }
 
 div.angular {
   background-image: url(../img/angular.png);
   height: 190px;
   width: 175px;
+  background-size: 100% 100%;
 }
 
+div.pivotal-labs.small {
+  height: 50px;
+  width: 201px;
+}
+
+div.jasmine.small {
+  height: 95px;
+  width: 95px;
+}
+
+div.angular.small {
+  height: 95px;
+  width: 88px;
+}
+
+
 div.logo {
-  background-size: 100% 100%;
   margin-top: 100px;
   float: right;
+}
+
+.reveal div.bottom-logos {
+  margin-top: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reveal div.bottom-logos div:not(:last-child) {
+  margin-right: 2em;
 }
 
 p code {
