@@ -254,7 +254,7 @@ describe('timeProvider', function () {
   it('tracks calls and arguments', function () {
     spyOn(timeProvider, 'dayOfWeek').and.returnValue('Monday');
 
-    var result = timeProvider.dayOfWeek('capitalize');
+    var result = timeProvider.dayOfWeek('capital');
 
 
 
@@ -275,7 +275,7 @@ describe('timeProvider', function () {
   it('tracks calls and arguments', function () {
     spyOn(timeProvider, 'dayOfWeek').and.returnValue('Monday');
 
-    var result = timeProvider.dayOfWeek('capitalize');
+    var result = timeProvider.dayOfWeek('capital');
 
     expect(result).toEqual('Monday');
 
@@ -296,32 +296,32 @@ describe('timeProvider', function () {
   it('tracks calls and arguments', function () {
     spyOn(timeProvider, 'dayOfWeek').and.returnValue('Monday');
 
-    var result = timeProvider.dayOfWeek('capitalize');
-
-    expect(result).toEqual('Monday');
-    expect(timeProvider.dayOfWeek).toHaveBeenCalled();
-
-
-  });
-});
-            </code></pre>
-          </section>
-
-          <section>
-            <p><code>spyOn</code> allows for easy mocking</p>
-
-            <pre><code class="javascript" data-trim>
-describe('timeProvider', function () {
-  // setup
-
-  it('tracks calls and arguments', function () {
-    spyOn(timeProvider, 'dayOfWeek').and.returnValue('Monday');
-
-    var result = timeProvider.dayOfWeek('capitalize');
+    var result = timeProvider.dayOfWeek('capital');
 
     expect(result).toEqual('Monday');
     expect(timeProvider.dayOfWeek).toHaveBeenCalled();
-    expect(timeProvider.dayOfWeek).toHaveBeenCalledWith('capitalize');
+
+
+  });
+});
+            </code></pre>
+          </section>
+
+          <section>
+            <p><code>spyOn</code> allows for easy mocking</p>
+
+            <pre><code class="javascript" data-trim>
+describe('timeProvider', function () {
+  // setup
+
+  it('tracks calls and arguments', function () {
+    spyOn(timeProvider, 'dayOfWeek').and.returnValue('Monday');
+
+    var result = timeProvider.dayOfWeek('capital');
+
+    expect(result).toEqual('Monday');
+    expect(timeProvider.dayOfWeek).toHaveBeenCalled();
+    expect(timeProvider.dayOfWeek).toHaveBeenCalledWith('capital');
 
   });
 });
@@ -338,11 +338,11 @@ describe('timeProvider', function () {
   it('tracks calls and arguments', function () {
     spyOn(timeProvider, 'dayOfWeek').and.returnValue('Monday');
 
-    var result = timeProvider.dayOfWeek('capitalize');
+    var result = timeProvider.dayOfWeek('capital');
 
     expect(result).toEqual('Monday');
     expect(timeProvider.dayOfWeek).toHaveBeenCalled();
-    expect(timeProvider.dayOfWeek).toHaveBeenCalledWith('capitalize');
+    expect(timeProvider.dayOfWeek).toHaveBeenCalledWith('capital');
     expect(timeProvider.dayOfWeek.calls.count()).toEqual(1);
   });
 });
