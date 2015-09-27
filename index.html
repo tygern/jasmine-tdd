@@ -388,11 +388,59 @@ it('will fail', function (done) {
           </section>
 
         <!--AngularJS-->
-          <section>
-            <img src="img/angular.png" alt="Jasmine">
-            <h2>AngularJS</h2>
-            <p>framework for JavaScript applications</p>
-          </section>
+        <section>
+          <h2>What is Angular?</h2>
+          <ul>
+            <li class="fragment">Javascript framework for web applications</li>
+            <li class="fragment">Developed by Google</li>
+            <li class="fragment">Version 1 or 2?</li>
+            <li class="fragment">Angular is testable!</li>
+          </ul>
+          <div class="angular logo"></div>
+        </section>
+
+        <section>
+          <h2>Modules</h2>
+
+          <p>Modules allow for building an application from loosely-coupled, highly-cohesive components.</p>
+
+          <pre><code class="javascript">
+angular.module('time', []);             \\       myApplication
+angular.module('twitterAdapter', []);   \\          /     \
+angular.module('messaging', [           \\         /       \
+  'twitterAdapter'                      \\        /         \
+]);                                     \\   messaging     time
+                                        \\       |
+angular.module('myApplication', [       \\       |
+  'time',                               \\       |
+  'messaging'                           \\   twitterAdapter
+])                                      \\
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Modules</h2>
+
+          <p>Angular tests are isolated to a single module and its dependencies</p>
+
+          <pre><code class="javascript" data-trim>
+describe('messaging.flashController', function () {
+  beforeEach(module('messaging'));
+
+  // tests go here
+)};
+          </code></pre>
+        </section>
+
+        <section>
+            <h2>Dependency injection</h2>
+            <pre><code class="javascript" data-trim>
+angular.module('messages')
+  .controller('FlashController', function ($scope, messageService) {
+    $scope.message = messageService.getMessage();
+  });
+            </code></pre>
+        </section>
 
           <section>
             <p><code>html</code> views are annotated with attributes</p>
