@@ -51,36 +51,72 @@
 
         <!--TDD Basics-->
         <section>
-          <section>
-            <h2>What is TDD?</h2>
-            <ul>
-              <li>Don't write a line of new code unless you first have a failing automated test.</li>
-              <li>Eliminate duplication.</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2>What is TDD?</h2>
-            <ul>
-              <li><span class="highlight red">Red</span> — write a short failing test</li>
-              <li><span class="highlight green">Green</span> — make the test pass in the simplest way possible</li>
-              <li><span class="highlight">Refactor</span> — eliminate duplication introduced in the previous step</li>
-            </ul>
-          </section>
-
-          <section>
-					<h2>Why practice TDD?</h2>
-					<ul>
-						<li>Reduces number of defects</li>
-						<li>Allows refactoring with confidence</li>
-						<li>Leads to simple designs</li>
-						<li>Documents behavior of code</li>
-					</ul>
-				</section>
+          <h2>What is TDD?</h2>
+          <ul>
+            <li>Don't write a line of new code unless you first have a failing automated test.</li>
+            <li>Eliminate duplication.</li>
+          </ul>
         </section>
 
-        <!--Jasmine-->
         <section>
+          <h2>How to practice TDD?</h2>
+          <span class="highlight red large">Red</span>
+          <p>write a short <strong>failing</strong> test</p>
+          <ul>
+            <li>Watch your test fail</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>How to practice TDD?</h2>
+          <span class="highlight red large">Red</span>
+          <span class="right-arrow large"></span>
+          <span class="highlight green large">Green</span>
+          <p>make the test pass in the <strong>simplest</strong> way possible</p>
+          <ul>
+            <li>Nothing too fancy</li>
+            <li>Duplicate code, if needed</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>How to practice TDD?</h2>
+          <span class="highlight red large">Red</span>
+          <span class="right-arrow large"></span>
+          <span class="highlight green large">Green</span>
+          <span class="right-arrow large"></span>
+          <span class="highlight blue large">Refactor</span>
+          <p>eliminate duplication introduced in the previous step</p>
+          <ul>
+            <li>Improve code without changing behavior</li>
+            <li>Covered by tests</li>
+            <li>Don't forget!</li>
+          </ul>
+        </section>
+
+        <section>
+        <h2>Why practice TDD?</h2>
+        <ul>
+          <li>Documents behavior of code</li>
+            <ul>
+              <li>Easy for new developers to join project</li>
+              <li>Stays up to date, unlike comments</li>
+              <!--<div>EXAMPLE</div>-->
+            </ul>
+          <li>Leads to simple designs</li>
+            <ul>
+              <li>Solution uses minimal amount of code</li>
+              <li>Tests are first client of code</li>
+            </ul>
+          <li>Allows refactoring with confidence</li>
+            <ul>
+              <li>Code improves over time</li>
+            </ul>
+          <li>Reduces number of defects</li>
+        </ul>
+				</section>
+
+        <!--Jasmine-->
           <section>
             <img src="img/jasmine_vertical.png" alt="Jasmine">
             <p>framework for testing JavaScript code</p>
@@ -165,7 +201,7 @@ var timeProvider;
 
 beforeEach(function () {
   timeProvider = {
-    dayOfWeek: 'Thursday'
+    dayOfWeek: function () return('Thursday')
   };
 });
             </code></pre>
@@ -314,10 +350,8 @@ it('will fail', function (done) {
 });
             </code></pre>
           </section>
-        </section>
 
         <!--AngularJS-->
-        <section>
           <section>
             <img src="img/angular.png" alt="Jasmine">
             <h2>AngularJS</h2>
@@ -395,10 +429,8 @@ describe('WelcomeController', function () {
 });
             </code></pre>
           </section>
-        </section>
 
         <!--Sample app-->
-        <section>
           <section>
             <h2>Top Contributers</h2>
             <p>
@@ -487,7 +519,6 @@ describe('githubService', function() {
 });
 					  </code></pre>
           </section>
-        </section>
       </div>
 
     </div>

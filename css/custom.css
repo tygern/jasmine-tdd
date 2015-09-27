@@ -43,3 +43,12 @@ p code {
 .columns div:not:last-child {
   margin-right: 2em;
 }
+
+.large {
+  font-size: 2em !important;
+}
+
+.right-arrow:before {
+  content: '→';
+  padding: 0 .2em;
+}
