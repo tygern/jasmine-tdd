@@ -421,7 +421,13 @@ angular.module('myApplication', [       \\       |
         <section>
           <h2>Modules</h2>
 
-          <p>Angular tests are isolated to a single module and its dependencies</p>
+          <p>Angular components and tests are isolated to a single module and its dependencies</p>
+
+          <pre><code class="javascript" data-trim>
+angular.module('messaging')
+  .controller('messaging.flashController', function () {
+  });
+          </code></pre>
 
           <pre><code class="javascript" data-trim>
 describe('messaging.flashController', function () {
@@ -433,43 +439,75 @@ describe('messaging.flashController', function () {
         </section>
 
         <section>
-            <h2>Dependency injection</h2>
-            <pre><code class="javascript" data-trim>
-angular.module('messages')
-  .controller('FlashController', function ($scope, messageService) {
-    $scope.message = messageService.getMessage();
-  });
-            </code></pre>
-        </section>
+          <h2>Binding with $scope</h2>
 
-          <section>
-            <p><code>html</code> views are annotated with attributes</p>
-            <pre><code class="html" data-trim>
-  <div ng-app="sampleApplication">
-    <div ng-controller="WelcomeController">
-      <h2>{{message}}</h2>
-    </div>
-  </div>
-            </code></pre>
+          <p>Angular synchronizes controllers and views <code>$scope</code></p>
 
-            <p>which angular uses to define DOM behavior</p>
-            <pre><code class="javascript" data-trim>
-angular.module('sampleApplication')
-  .controller('WelcomeController', function () {
+          <pre><code class="html" data-trim>
+<div ng-controller="messaging.flashController">
+  <h2>{{message}}</h2>
+</div>
+          </code></pre>
+
+          <p>+</p>
+
+          <pre><code class="javascript" data-trim>
+angular.module('messaging')
+  .controller('messaging.flashController', function ($scope) {
     $scope.message = 'hello';
   });
-            </code></pre>
-          </section>
+          </code></pre>
 
-          <section>
-            <p>Dependency injection helps to make angular testable.</p>
-            <pre><code class="javascript" data-trim>
-angular.module('sampleApplication')
-  .controller('WelcomeController', function ($scope, messageService) {
-    $scope.message = messageService.getMessage();
+          <p>=</p>
+
+          <pre><code class="html" data-trim>
+<div>
+  <h2>hello</h2>
+</div>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Dependency injection</h2>
+
+          <p>Angular uses dependency injection to provide objects with collaborators</p>
+
+          <pre><code class="javascript" data-trim>
+angular.module('messaging')
+  .controller('messaging.flashController', function($scope,
+                                                  messagesService) {
+
   });
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Dependency injection</h2>
+
+          <p>We can use <code>inject</code> to access the injector in tests</p>
+
+          <pre><code class="javascript" data-trim>
+describe('messages.flashController', function () {
+  var $scope, mockMessagingService;
+
+  beforeEach(module('messaging'));
+
+  beforeEach(inject(function ($rootScope,
+                           $controller) {
+    $scope = $rootScope.$new();
+
+    mockMessagingService = jasmine.createSpyObj(['getMessage']);
+
+    $controller('messages.flashController', {
+      $scope: $scope,
+      messagingService: mockMessagingService
+    });
+  }));
+
+  // tests go here
+});
             </code></pre>
-          </section>
+        </section>
 
           <section>
             <h2>Testing Angular</h2>
