@@ -458,12 +458,14 @@ angular.module('messaging')
   });
           </code></pre>
 
-          <p>=</p>
+          <div class="fragment">
+            <p>=</p>
 
-          <pre><code class="html" data-trim>
-<div>
+            <pre><code class="html" data-trim>
+<div ng-controller="messaging.flashController">
   <h2>hello</h2>
 </div>
+            </div>
           </code></pre>
         </section>
 
@@ -484,18 +486,40 @@ angular.module('messaging')
         <section>
           <h2>Dependency injection</h2>
 
-          <p>We can use <code>inject</code> to access the injector in tests</p>
+          <p>We can inject <code>$scope</code> in tests </p>
+
+          <pre><code class="javascript" data-trim>
+describe('messages.flashController', function () {
+  var $scope;
+  beforeEach(module('messaging'));
+
+  beforeEach(inject(function ($rootScope, $controller) {
+    $scope = $rootScope.$new();
+
+
+    $controller('messages.flashController', {
+      $scope: $scope
+
+    });
+  }));
+
+  // tests go here
+});
+            </code></pre>
+        </section>
+
+        <section>
+          <h2>Dependency injection</h2>
+
+          <p>We can also inject our own mock objects.</p>
 
           <pre><code class="javascript" data-trim>
 describe('messages.flashController', function () {
   var $scope, mockMessagingService;
-
   beforeEach(module('messaging'));
 
-  beforeEach(inject(function ($rootScope,
-                           $controller) {
+  beforeEach(inject(function ($rootScope, $controller) {
     $scope = $rootScope.$new();
-
     mockMessagingService = jasmine.createSpyObj(['getMessage']);
 
     $controller('messages.flashController', {
@@ -510,47 +534,84 @@ describe('messages.flashController', function () {
         </section>
 
           <section>
-            <h2>Testing Angular</h2>
-            <ul>
-              <li>End to end tests - Protractor</li>
-              <li>Unit tests - Jasmine</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2>Test setup</h2>
-            <pre><code class="javascript" data-trim>
-describe('WelcomeController', function () {
-  var $scope;
-
-  beforeEach(module('sampleApplication'));
-
-  beforeEach(inject(function ($rootScope,
-                              $controller) {
-    $scope = $rootScope.$new();
-
-    $controller('WelcomeController');
-  }));
-
-  // tests go here
-});
-            </code></pre>
-          </section>
-
-          <section>
             <h2>First test</h2>
             <pre><code class="javascript" data-trim>
-describe('WelcomeController', function () {
+describe('messages.flashController', function () {
   // setup
 
   describe('when the controller starts', function () {
     it('loads the message', function () {
-      expect($scope.message).toEqual('hello');
+      expect($scope.message).toEqual('Welcome!');
+      expect(messagingService).toHaveBeenCalledWith('initial');
     });
   });
 });
             </code></pre>
           </section>
+
+          <section data-background="#b5533c">
+            <h2>First test</h2>
+            <pre><code class="javascript" data-trim>
+describe('messages.flashController', function () {
+  // setup
+
+  describe('when the controller starts', function () {
+    it('loads the message', function () {
+      expect($scope.message).toEqual('Welcome!');
+      expect(messagingService).toHaveBeenCalledWith('initial');
+    });
+  });
+});
+            </code></pre>
+          </section>
+
+        <section>
+          <h2>Make it pass!</h2>
+
+          <pre><code class="javascript" data-trim>
+angular.module('messaging')
+  .controller('messaging.flashController', function($scope,
+                                                  messagesService) {
+    $scope.message = messagesService.getMessage('initial');
+  });
+          </code></pre>
+        </section>
+
+        <section data-background="#4d7e65">
+          <h2>Make it pass!</h2>
+
+          <pre><code class="javascript" data-trim>
+angular.module('messaging')
+  .controller('messaging.flashController', function($scope,
+                                                  messagesService) {
+    $scope.message = messagesService.getMessage('initial');
+  });
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Refactor?</h2>
+
+          <pre><code class="javascript" data-trim>
+angular.module('messaging')
+  .controller('messaging.flashController', function($scope,
+                                                  messagesService) {
+    $scope.message = messagesService.getMessage('initial');
+  });
+          </code></pre>
+        </section>
+
+        <section data-background="#4d657e">
+          <h2>Refactor?</h2>
+
+          <pre><code class="javascript" data-trim>
+angular.module('messaging')
+  .controller('messaging.flashController', function($scope,
+                                                  messagesService) {
+    $scope.message = messagesService.getMessage('initial');
+  });
+          </code></pre>
+        </section>
 
         <!--Sample app-->
           <section>
