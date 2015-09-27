@@ -39,87 +39,100 @@
 		<div class="reveal">
 
 			<div class="slides">
-        <!--Title-->
+        <!--Intro-->
 				<section>
 					<h1>TDD</h1>
 					<h3>With Jasmine and Angular</h3>
 					<p>
 						<small>Tyson Gern <a href="http://twitter.com/tygern">@tygern</a></small>
 					</p>
-					<div class="pivotal-labs-logo"></div>
+					<div class="pivotal-labs logo"></div>
+				</section>
+
+				<section>
+					<h2>Introduction</h2>
+          <ul>
+            <li class="fragment">I work for Pivotal Labs</li>
+            <li class="fragment">100% TDD and Pair Programming</li>
+            <li class="fragment">We're new in town</li>
+            <li class="fragment">We're hiring!</li>
+          </ul>
+					<div class="pivotal-labs logo"></div>
 				</section>
 
         <!--TDD Basics-->
         <section>
           <h2>What is TDD?</h2>
           <ul>
-            <li>Don't write a line of new code unless you first have a failing automated test.</li>
-            <li>Eliminate duplication.</li>
+            <li class="fragment">Don't write a line of new code unless you first have a failing automated test.</li>
+            <li class="fragment">Eliminate duplication.</li>
           </ul>
         </section>
 
         <section>
-          <h2>How to practice TDD?</h2>
-          <span class="highlight red large">Red</span>
-          <p>write a short <strong>failing</strong> test</p>
+          <h2>Why practice TDD?</h2>
           <ul>
-            <li>Watch your test fail</li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>How to practice TDD?</h2>
-          <span class="highlight red large">Red</span>
-          <span class="right-arrow large"></span>
-          <span class="highlight green large">Green</span>
-          <p>make the test pass in the <strong>simplest</strong> way possible</p>
-          <ul>
-            <li>Nothing too fancy</li>
-            <li>Duplicate code, if needed</li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>How to practice TDD?</h2>
-          <span class="highlight red large">Red</span>
-          <span class="right-arrow large"></span>
-          <span class="highlight green large">Green</span>
-          <span class="right-arrow large"></span>
-          <span class="highlight blue large">Refactor</span>
-          <p>eliminate duplication introduced in the previous step</p>
-          <ul>
-            <li>Improve code without changing behavior</li>
-            <li>Covered by tests</li>
-            <li>Don't forget!</li>
-          </ul>
-        </section>
-
-        <section>
-        <h2>Why practice TDD?</h2>
-        <ul>
-          <li>Documents behavior of code</li>
-            <ul>
+            <li class="fragment highlight-current-blue" data-fragment-index="1">Documents behavior of code</li>
+            <ul class="fragment current-visible display-none" data-fragment-index="1">
               <li>Easy for new developers to join project</li>
               <li>Stays up to date, unlike comments</li>
               <!--<div>EXAMPLE</div>-->
             </ul>
-          <li>Leads to simple designs</li>
-            <ul>
+            <li class="fragment highlight-current-blue" data-fragment-index="2">Leads to simple designs</li>
+            <ul class="fragment current-visible display-none" data-fragment-index="2">
               <li>Solution uses minimal amount of code</li>
               <li>Tests are first client of code</li>
             </ul>
-          <li>Allows refactoring with confidence</li>
-            <ul>
+            <li class="fragment highlight-current-blue" data-fragment-index="3">Allows refactoring with confidence</li>
+            <ul class="fragment current-visible display-none" data-fragment-index="3">
               <li>Code improves over time</li>
             </ul>
-          <li>Reduces number of defects</li>
-        </ul>
-				</section>
+            <li class="fragment highlight-current-blue" data-fragment-index="4">Reduces number of defects</li>
+            <ul class="fragment current-visible display-none" data-fragment-index="4">
+              <li>Maintainable code</li>
+            </ul>
+          </ul>
+        </section>
+
+        <section>
+          <h2>How to practice TDD?</h2>
+          <span class="highlight red large fragment" data-fragment-index="1">Red</span>
+          <span class="right-arrow large fragment" data-fragment-index="2"></span>
+          <span class="highlight green large fragment" data-fragment-index="2">Green</span>
+          <span class="right-arrow large fragment" data-fragment-index="3"></span>
+          <span class="highlight blue large fragment" data-fragment-index="3">Refactor</span>
+          <div class="fragment current-visible display-none" data-fragment-index="1">
+            <p>Write a short <strong>failing</strong> test</p>
+            <ul>
+              <li>Watch your test fail</li>
+            </ul>
+          </div>
+          <div class="fragment current-visible display-none" data-fragment-index="2">
+            <p>Make the test pass in the <strong>simplest</strong> way possible</p>
+            <ul>
+              <li>Nothing too fancy</li>
+              <li>Duplicate code, if needed</li>
+            </ul>
+          </div>
+          <div class="fragment current-visible display-none" data-fragment-index="3">
+            <p>Eliminate duplication introduced in the previous step</p>
+            <ul>
+              <li>Improve code without changing behavior</li>
+              <li>Covered by tests</li>
+              <li>Don't forget!</li>
+            </ul>
+          </div>
+        </section>
 
         <!--Jasmine-->
           <section>
-            <img src="img/jasmine_vertical.png" alt="Jasmine">
-            <p>framework for testing JavaScript code</p>
+            <h2>What is Jasmine?</h2>
+            <ul>
+              <li class="fragment">BDD/TDD framework for javascript</li>
+              <li class="fragment">Developed by Pivotal Labs</li>
+              <li class="fragment">Works with lots of frameworks</li>
+            </ul>
+            <div class="jasmine logo"></div>
           </section>
 
           <section>
@@ -183,8 +196,7 @@ describe('square', function () {
 
             <pre><code class="javascript" data-trim>
 describe('square', function () {
-  it('squares the number', function () {
-    expect(square(1)).toEqual(1);
+  it('has other matchers', function () {
     expect(square(3)).not.toEqual(8);
     expect(square(5)).toBeGreaterThan(20);
     expect(square("a")).toBeUndefined();
@@ -194,15 +206,46 @@ describe('square', function () {
           </section>
 
           <section>
-            <p><code>beforeEach</code> helps to conduct test setup</p>
+            <p><code>beforeEach</code> runs a test setup function</p>
 
             <pre><code class="javascript" data-trim>
-var timeProvider;
+describe('timeProvider', function () {
+  var timeProvider;
 
-beforeEach(function () {
-  timeProvider = {
-    dayOfWeek: function () return('Thursday')
-  };
+  beforeEach(function () {
+    timeProvider = {
+      dayOfWeek: function () return('Thursday')
+    };
+  });
+
+  afterEach(function () {
+    timeProvider.reset();
+  });
+
+  // tests go here
+});
+            </code></pre>
+
+            <p><code>afterEach</code> runs a test teardown function</p>
+          </section>
+
+          <section>
+            <p><code>spyOn</code> allows for easy mocking</p>
+
+            <pre><code class="javascript" data-trim>
+describe('timeProvider', function () {
+  // setup
+
+  it('tracks calls and arguments', function () {
+    spyOn(timeProvider, 'dayOfWeek').and.returnValue('Monday');
+
+    var result = timeProvider.dayOfWeek('capitalize');
+
+
+
+
+
+  });
 });
             </code></pre>
           </section>
@@ -211,17 +254,19 @@ beforeEach(function () {
             <p><code>spyOn</code> allows for easy mocking</p>
 
             <pre><code class="javascript" data-trim>
-// setup
+describe('timeProvider', function () {
+  // setup
 
-it('tracks calls and arguments', function () {
-  spyOn(timeProvider, 'dayOfWeek').and.returnValue('Monday');
+  it('tracks calls and arguments', function () {
+    spyOn(timeProvider, 'dayOfWeek').and.returnValue('Monday');
 
-  var result = timeProvider.dayOfWeek('capitalize');
+    var result = timeProvider.dayOfWeek('capitalize');
+
+    expect(result).toEqual('Monday');
 
 
 
-
-
+  });
 });
             </code></pre>
           </section>
@@ -230,17 +275,19 @@ it('tracks calls and arguments', function () {
             <p><code>spyOn</code> allows for easy mocking</p>
 
             <pre><code class="javascript" data-trim>
-// setup
+describe('timeProvider', function () {
+  // setup
 
-it('tracks calls and arguments', function () {
-  spyOn(timeProvider, 'dayOfWeek').and.returnValue('Monday');
+  it('tracks calls and arguments', function () {
+    spyOn(timeProvider, 'dayOfWeek').and.returnValue('Monday');
 
-  var result = timeProvider.dayOfWeek('capitalize');
+    var result = timeProvider.dayOfWeek('capitalize');
 
-  expect(result).toEqual('Monday');
+    expect(result).toEqual('Monday');
+    expect(timeProvider.dayOfWeek).toHaveBeenCalled();
 
 
-
+  });
 });
             </code></pre>
           </section>
@@ -249,36 +296,19 @@ it('tracks calls and arguments', function () {
             <p><code>spyOn</code> allows for easy mocking</p>
 
             <pre><code class="javascript" data-trim>
-// setup
+describe('timeProvider', function () {
+  // setup
 
-it('tracks calls and arguments', function () {
-  spyOn(timeProvider, 'dayOfWeek').and.returnValue('Monday');
+  it('tracks calls and arguments', function () {
+    spyOn(timeProvider, 'dayOfWeek').and.returnValue('Monday');
 
-  var result = timeProvider.dayOfWeek('capitalize');
+    var result = timeProvider.dayOfWeek('capitalize');
 
-  expect(result).toEqual('Monday');
-  expect(timeProvider.dayOfWeek).toHaveBeenCalled();
+    expect(result).toEqual('Monday');
+    expect(timeProvider.dayOfWeek).toHaveBeenCalled();
+    expect(timeProvider.dayOfWeek).toHaveBeenCalledWith('capitalize');
 
-
-});
-            </code></pre>
-          </section>
-
-          <section>
-            <p><code>spyOn</code> allows for easy mocking</p>
-
-            <pre><code class="javascript" data-trim>
-// setup
-
-it('tracks calls and arguments', function () {
-  spyOn(timeProvider, 'dayOfWeek').and.returnValue('Monday');
-
-  var result = timeProvider.dayOfWeek('capitalize');
-
-  expect(result).toEqual('Monday');
-  expect(timeProvider.dayOfWeek).toHaveBeenCalled();
-  expect(timeProvider.dayOfWeek).toHaveBeenCalledWith('capitalize');
-
+  });
 });
             </code></pre>
           </section>
@@ -287,17 +317,19 @@ it('tracks calls and arguments', function () {
           <p><code>spyOn</code> allows for easy mocking</p>
 
           <pre><code class="javascript" data-trim>
-// setup
+describe('timeProvider', function () {
+  // setup
 
-it('tracks calls and arguments', function () {
-  spyOn(timeProvider, 'dayOfWeek').and.returnValue('Monday');
+  it('tracks calls and arguments', function () {
+    spyOn(timeProvider, 'dayOfWeek').and.returnValue('Monday');
 
-  var result = timeProvider.dayOfWeek('capitalize');
+    var result = timeProvider.dayOfWeek('capitalize');
 
-  expect(result).toEqual('Monday');
-  expect(timeProvider.dayOfWeek).toHaveBeenCalled();
-  expect(timeProvider.dayOfWeek).toHaveBeenCalledWith('capitalize');
-  expect(timeProvider.dayOfWeek.calls.count()).toEqual(1);
+    expect(result).toEqual('Monday');
+    expect(timeProvider.dayOfWeek).toHaveBeenCalled();
+    expect(timeProvider.dayOfWeek).toHaveBeenCalledWith('capitalize');
+    expect(timeProvider.dayOfWeek.calls.count()).toEqual(1);
+  });
 });
 					</code></pre>
 
@@ -342,11 +374,15 @@ it('takes done as an argument', function (done) {
 
             <pre><code class="javascript" data-trim>
 it('will pass', function (done) {
-  setTimeout(done, 4000);
+  setTimeout(function () {
+    done();
+  }, 4000);
 });
 
 it('will fail', function (done) {
-  setTimeout(done, 6000);
+  setTimeout(function () {
+    done();
+  }, 6000);
 });
             </code></pre>
           </section>
