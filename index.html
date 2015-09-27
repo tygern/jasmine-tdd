@@ -384,7 +384,7 @@ it('takes done as an argument', function (done) {
 
             <p>
               By default, Jasmine will wait five seconds for <code>done</code> to be called
-              before failing a test
+              before failing a test.
             </p>
 
             <pre><code class="javascript" data-trim>
@@ -408,7 +408,7 @@ it('will fail', function (done) {
           <ul>
             <li class="fragment">Javascript framework for web applications</li>
             <li class="fragment">Developed by Google</li>
-            <li class="fragment">Angular is testable!</li>
+            <li class="fragment">It's testable!</li>
             <li class="fragment">Version 1 or 2?</li>
           </ul>
           <div class="angular logo"></div>
@@ -417,7 +417,7 @@ it('will fail', function (done) {
         <section>
           <h2>Modules</h2>
 
-          <p>Modules allow for building an application from loosely-coupled, highly-cohesive components.</p>
+          <p>Modules allow building application from loosely-coupled, highly-cohesive components.</p>
 
           <pre><code class="javascript">
 angular.module('time', []);             \\       myApplication
@@ -436,7 +436,7 @@ angular.module('myApplication', [       \\       |
         <section>
           <h2>Modules</h2>
 
-          <p>Angular components and tests are isolated to a single module and its dependencies</p>
+          <p>Angular objects and tests are isolated to a single module and its dependencies.</p>
 
           <pre><code class="javascript" data-trim>
 angular.module('messaging')
@@ -454,9 +454,9 @@ describe('messaging.flashController', function () {
         </section>
 
         <section>
-          <h2>Binding with $scope</h2>
+          <h2>Binding with <code>$scope</code></h2>
 
-          <p>Angular synchronizes controllers and views <code>$scope</code></p>
+          <p>Angular synchronizes controllers and views with <code>$scope</code>.</p>
 
           <pre><code class="html" data-trim>
 <div ng-controller="messaging.flashController">
@@ -464,7 +464,9 @@ describe('messaging.flashController', function () {
 </div>
           </code></pre>
 
-          <p>+</p>
+          <div class="fragment" data-fragment-index="1">
+            <p>+</p>
+          </div>
 
           <pre><code class="javascript" data-trim>
 angular.module('messaging')
@@ -473,7 +475,7 @@ angular.module('messaging')
   });
           </code></pre>
 
-          <div class="fragment">
+          <div class="fragment" data-fragment-index="1">
             <p>=</p>
 
             <pre><code class="html" data-trim>
@@ -487,7 +489,7 @@ angular.module('messaging')
         <section>
           <h2>Dependency injection</h2>
 
-          <p>Angular uses dependency injection to provide objects with collaborators</p>
+          <p>Angular uses dependency injection to provide objects with collaborators.</p>
 
           <pre><code class="javascript" data-trim>
 angular.module('messaging')
@@ -501,7 +503,7 @@ angular.module('messaging')
         <section>
           <h2>Dependency injection</h2>
 
-          <p>We can inject <code>$scope</code> in tests </p>
+          <p>We can inject <code>$scope</code> in tests</p>
 
           <pre><code class="javascript" data-trim>
 describe('messages.flashController', function () {

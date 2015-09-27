@@ -69,3 +69,7 @@ p code {
 .reveal .slides section .display-none.fragment.current-visible:not(.current-fragment) {
   display: none
 }
+
+h1, h2 {
+  word-spacing: 10px;
+}
