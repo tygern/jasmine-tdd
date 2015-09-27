@@ -41,7 +41,7 @@
 			<div class="slides">
         <!--Intro-->
 				<section>
-					<h1>TDD</h1>
+					<h1>Test Driven Development</h1>
 					<h3>With Jasmine and Angular</h3>
 					<p>
 						<small>Tyson Gern <a href="http://twitter.com/tygern">@tygern</a></small>
@@ -52,7 +52,7 @@
 				<section>
 					<h2>Introduction</h2>
           <ul>
-            <li class="fragment">I work for Pivotal Labs</li>
+            <li class="fragment">Software Engineer at Pivotal Labs</li>
             <li class="fragment">100% TDD and Pair Programming</li>
             <li class="fragment">We're new in town</li>
             <li class="fragment">We're hiring!</li>
@@ -63,34 +63,49 @@
         <!--TDD Basics-->
         <section>
           <h2>What is TDD?</h2>
-          <ul>
+
+          <p>According to Kent Beck...</p>
+
+          <ol>
             <li class="fragment">Don't write a line of new code unless you first have a failing automated test.</li>
             <li class="fragment">Eliminate duplication.</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Why practice TDD?</h2>
+          <p class="highlight blue">Documents behavior of code</p>
+          <ul>
+            <li class="fragment">Easy for new developers to join project</li>
+            <li class="fragment">Stays up to date, unlike comments</li>
+            <!--<div>EXAMPLE</div>-->
           </ul>
         </section>
 
         <section>
           <h2>Why practice TDD?</h2>
+          <p class="highlight blue">Leads to simple design</p>
           <ul>
-            <li class="fragment highlight-current-blue" data-fragment-index="1">Documents behavior of code</li>
-            <ul class="fragment current-visible display-none" data-fragment-index="1">
-              <li>Easy for new developers to join project</li>
-              <li>Stays up to date, unlike comments</li>
-              <!--<div>EXAMPLE</div>-->
-            </ul>
-            <li class="fragment highlight-current-blue" data-fragment-index="2">Leads to simple designs</li>
-            <ul class="fragment current-visible display-none" data-fragment-index="2">
-              <li>Solution uses minimal amount of code</li>
-              <li>Tests are first client of code</li>
-            </ul>
-            <li class="fragment highlight-current-blue" data-fragment-index="3">Allows refactoring with confidence</li>
-            <ul class="fragment current-visible display-none" data-fragment-index="3">
-              <li>Code improves over time</li>
-            </ul>
-            <li class="fragment highlight-current-blue" data-fragment-index="4">Reduces number of defects</li>
-            <ul class="fragment current-visible display-none" data-fragment-index="4">
-              <li>Maintainable code</li>
-            </ul>
+            <li class="fragment">Solution uses minimal amount of code</li>
+            <li class="fragment">Tests are first client of code</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Why practice TDD?</h2>
+          <p class="highlight blue">Allows refactoring with confidence</p>
+          <ul>
+            <li class="fragment">Regressions are uncommon</li>
+            <li class="fragment">Code improves over time</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Why practice TDD?</h2>
+          <p class="highlight blue">Reduces number of defects</p>
+          <ul>
+            <li class="fragment">Maintainable code</li>
+            <li class="fragment">Deploy any time</li>
           </ul>
         </section>
 
@@ -130,7 +145,7 @@
             <ul>
               <li class="fragment">BDD/TDD framework for javascript</li>
               <li class="fragment">Developed by Pivotal Labs</li>
-              <li class="fragment">Works with lots of frameworks</li>
+              <li class="fragment">Framework independent</li>
             </ul>
             <div class="jasmine logo"></div>
           </section>
@@ -192,7 +207,7 @@ describe('square', function () {
           </section>
 
           <section>
-            <p>Jasmine has lots of useful matchers</p>
+            <p>Jasmine has many useful matchers</p>
 
             <pre><code class="javascript" data-trim>
 describe('square', function () {
@@ -214,12 +229,12 @@ describe('timeProvider', function () {
 
   beforeEach(function () {
     timeProvider = {
-      dayOfWeek: function () return('Thursday')
+      dayOfWeek: function () {return('Thursday');}
     };
   });
 
   afterEach(function () {
-    timeProvider.reset();
+    timeProvider = {};
   });
 
   // tests go here
@@ -393,8 +408,8 @@ it('will fail', function (done) {
           <ul>
             <li class="fragment">Javascript framework for web applications</li>
             <li class="fragment">Developed by Google</li>
-            <li class="fragment">Version 1 or 2?</li>
             <li class="fragment">Angular is testable!</li>
+            <li class="fragment">Version 1 or 2?</li>
           </ul>
           <div class="angular logo"></div>
         </section>
@@ -612,96 +627,6 @@ angular.module('messaging')
   });
           </code></pre>
         </section>
-
-        <!--Sample app-->
-          <section>
-            <h2>Top Contributers</h2>
-            <p>
-              Let's test drive a sample angular application that shows the
-              list of top github users in Dublin.
-            </p>
-          </section>
-
-          <section>
-            <h2>Testing promises</h2>
-            <pre><code class="javascript" data-trim>
-describe('UsersController', function () {
-  var $scope, githubService, githubDeferred;
-  beforeEach(module('topContributors'));
-
-  beforeEach(inject(function ($rootScope, $controller, $q,
-                              _githubService_) {
-    $scope = $rootScope.$new();
-    githubService = _githubService_;
-
-    githubDeferred = $q.defer();
-    spyOn(githubService, 'fetchUsers')
-            .and.returnValue(githubDeferred.promise);
-
-    $controller('UsersController');
-  }));
-});
-					  </code></pre>
-          </section>
-
-          <section>
-            <h2>Testing promises</h2>
-            <pre><code class="javascript" data-trim>
-describe('UsersController', function () {
-  // setup
-
-  describe('when the controller starts', function () {
-    it('fetches the users from GitHub', function () {
-      githubDeferred.resolve([{login: 'testUser'}]);
-      $scope.$apply();
-
-      expect($scope.users).toEqual([{login: 'testUser'}]);
-    });
-  });
-});
-            </code></pre>
-          </section>
-
-          <section>
-            <h2>Testing ajax calls</h2>
-            <pre><code class="javascript" data-trim>
-describe('githubService', function () {
-  var githubService;
-  beforeEach(module('topContributors'));
-
-  beforeEach(inject(function ($httpBackend,
-                              _githubService_) {
-    githubService = _githubService_;
-  }));
-
-  // tests
-});
-					  </code></pre>
-          </section>
-
-          <section>
-            <h2>Testing ajax calls</h2>
-            <pre><code class="javascript" data-trim>
-describe('githubService', function() {
-  // setup
-
-  describe('#getUsers', function() {
-    it('gets users from GitHub', function() {
-      $httpBackend
-        .expectGET('https://api.github.com/search/users' +
-        '?q=location:Dublin&sort=followers')
-        .respond({items: ['user']});
-
-      githubService.getUsers().then(function(response) {
-        expect(response).toEqual(['user']);
-      });
-
-      $httpBackend.flush();
-    });
-  });
-});
-					  </code></pre>
-          </section>
       </div>
 
     </div>
