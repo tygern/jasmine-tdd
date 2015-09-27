@@ -514,6 +514,7 @@ describe('messages.flashController', function () {
     $scope = $rootScope.$new();
 
 
+
     $controller('messages.flashController', {
       $scope: $scope
 
@@ -538,6 +539,7 @@ describe('messages.flashController', function () {
   beforeEach(inject(function ($rootScope, $controller) {
     $scope = $rootScope.$new();
     mockMessagingService = jasmine.createSpyObj(['getMessage']);
+    mockMessagingService.getMessage.and.return('Welcome!');
 
     $controller('messages.flashController', {
       $scope: $scope,
@@ -618,6 +620,7 @@ angular.module('messaging')
           </code></pre>
         </section>
 
+        <section>
         <section data-background="#4d657e">
           <h2>Refactor?</h2>
 
@@ -628,6 +631,123 @@ angular.module('messaging')
     $scope.message = messagesService.getMessage('initial');
   });
           </code></pre>
+        </section>
+
+          <section>
+            <h2>Another test</h2>
+            <pre><code class="javascript" data-trim>
+describe('messages.flashController', function () {
+  // tests and setup
+
+  describe('after waiting for inout', function () {
+    it('resets the message', function () {
+      $scope.message = '';
+
+      $timeout.flush(4900);
+      expect($scope.message).toEqual('');
+
+      $timeout.flush(5100);
+
+      expect($scope.message).toEqual('Welcome!');
+      expect(messagingService).toHaveBeenCalledWith('prompt');
+    });
+  });
+});
+            </code></pre>
+          </section>
+
+          <section data-background="#b5533c">
+            <h2>Another test</h2>
+            <pre><code class="javascript" data-trim>
+describe('messages.flashController', function () {
+  // tests and setup
+
+  describe('after waiting for inout', function () {
+    it('resets the message', function () {
+      $scope.message = '';
+
+      $timeout.flush(4900);
+      expect($scope.message).toEqual('');
+
+      $timeout.flush(5100);
+
+      expect($scope.message).toEqual('Welcome!');
+      expect(messagingService).toHaveBeenCalledWith('prompt');
+    });
+  });
+});
+            </code></pre>
+          </section>
+
+        <section>
+          <h2>Make it pass!</h2>
+
+          <pre><code class="javascript" data-trim>
+angular.module('messaging')
+  .controller('messaging.flashController', function($scope, $timeout,
+                                                  messagesService) {
+    $scope.message = messagesService.getMessage('initial');
+
+    $timeout(function () {
+      $scope.message = messagesService.getMessage('prompt');
+    }, 5000);
+  });
+          </code></pre>
+        </section>
+
+        <section data-background="#4d7e65">
+          <h2>Make it pass!</h2>
+
+          <pre><code class="javascript" data-trim>
+angular.module('messaging')
+  .controller('messaging.flashController', function($scope, $timeout,
+                                                  messagesService) {
+    $scope.message = messagesService.getMessage('initial');
+
+    $timeout(function () {
+      $scope.message = messagesService.getMessage('prompt');
+    }, 5000);
+  });
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Refactor?</h2>
+
+          <pre><code class="javascript" data-trim>
+angular.module('messaging')
+  .controller('messaging.flashController', function($scope, $timeout,
+                                                  messagesService) {
+    $scope.message = messagesService.getMessage('initial');
+
+    $timeout(function () {
+      $scope.message = messagesService.getMessage('prompt');
+    }, 5000);
+  });
+          </code></pre>
+        </section>
+
+        <section data-background="#4d657e">
+          <h2>Refactor!</h2>
+
+          <pre><code class="javascript" data-trim>
+angular.module('messaging')
+  .controller('messaging.flashController', function($scope, $timeout,
+                                                  messagesService) {
+    function setMessage(type) {
+      $scope.message = messagesService.getMessage(type);
+    };
+
+    setMessage('initial');
+
+    $timeout(function () {
+      setMessage('prompt');
+    }, 5000);
+  });
+          </code></pre>
+        </section>
+
+
         </section>
 
         <section>
