@@ -231,6 +231,30 @@ describe('timeProvider', function () {
     };
   });
 
+
+
+
+
+  // tests go here
+});
+            </code></pre>
+
+            <p>&nbsp;</p>
+          </section>
+
+          <section>
+            <p><code>beforeEach</code> runs a test setup function</p>
+
+            <pre><code class="javascript" data-trim>
+describe('timeProvider', function () {
+  var timeProvider;
+
+  beforeEach(function () {
+    timeProvider = {
+      dayOfWeek: function () {return('Thursday');}
+    };
+  });
+
   afterEach(function () {
     timeProvider = {};
   });
