@@ -4,9 +4,7 @@ describe('square', function () {
     expect(square(3)).toEqual(9);
     expect(square(-4)).toEqual(16);
   });
-});
 
-describe('square', function () {
   it('has other matchers', function () {
     expect(square(3)).not.toEqual(8);
     expect(square(5)).toBeGreaterThan(20);
