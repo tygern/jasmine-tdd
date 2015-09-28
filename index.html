@@ -72,6 +72,35 @@
         </section>
 
         <section>
+          <h2>How to practice TDD?</h2>
+          <span class="highlight red large fragment" data-fragment-index="1">Red</span>
+          <span class="right-arrow large fragment" data-fragment-index="2"></span>
+          <span class="highlight green large fragment" data-fragment-index="2">Green</span>
+          <span class="right-arrow large fragment" data-fragment-index="3"></span>
+          <span class="highlight blue large fragment" data-fragment-index="3">Refactor</span>
+          <div class="fragment current-visible display-none" data-fragment-index="1">
+            <p>Write a short <strong class="highlight red">failing</strong> test</p>
+            <ul>
+              <li>Watch your test fail</li>
+            </ul>
+          </div>
+          <div class="fragment current-visible display-none" data-fragment-index="2">
+            <p>Make the test pass in the <strong class="highlight green">simplest</strong> way possible</p>
+            <ul>
+              <li>Nothing too fancy</li>
+              <li>Duplicate code, if needed</li>
+            </ul>
+          </div>
+          <div class="fragment current-visible display-none" data-fragment-index="3">
+            <p>Eliminate <strong class="highlight blue">duplication</strong> introduced in the previous step</p>
+            <ul>
+              <li>Improve code without changing behavior</li>
+              <li>Don't forget!</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
           <h2>Why practice TDD?</h2>
           <p class="highlight blue">Documents behavior of code</p>
           <ul>
@@ -106,36 +135,6 @@
             <li class="fragment">Maintainable code</li>
             <li class="fragment">Deploy any time</li>
           </ul>
-        </section>
-
-        <section>
-          <h2>How to practice TDD?</h2>
-          <span class="highlight red large fragment" data-fragment-index="1">Red</span>
-          <span class="right-arrow large fragment" data-fragment-index="2"></span>
-          <span class="highlight green large fragment" data-fragment-index="2">Green</span>
-          <span class="right-arrow large fragment" data-fragment-index="3"></span>
-          <span class="highlight blue large fragment" data-fragment-index="3">Refactor</span>
-          <div class="fragment current-visible display-none" data-fragment-index="1">
-            <p>Write a short <strong>failing</strong> test</p>
-            <ul>
-              <li>Watch your test fail</li>
-            </ul>
-          </div>
-          <div class="fragment current-visible display-none" data-fragment-index="2">
-            <p>Make the test pass in the <strong>simplest</strong> way possible</p>
-            <ul>
-              <li>Nothing too fancy</li>
-              <li>Duplicate code, if needed</li>
-            </ul>
-          </div>
-          <div class="fragment current-visible display-none" data-fragment-index="3">
-            <p>Eliminate duplication introduced in the previous step</p>
-            <ul>
-              <li>Improve code without changing behavior</li>
-              <li>Covered by tests</li>
-              <li>Don't forget!</li>
-            </ul>
-          </div>
         </section>
 
         <!--Jasmine-->
@@ -414,46 +413,7 @@ it('will fail', function (done) {
         </section>
 
         <section>
-          <h2>Modules</h2>
-
-          <p>Modules allow building application from loosely-coupled, highly-cohesive components.</p>
-
-          <pre><code class="javascript">
-angular.module('time', []);             \\       myApplication
-angular.module('twitterAdapter', []);   \\          /     \
-angular.module('messaging', [           \\         /       \
-  'twitterAdapter'                      \\        /         \
-]);                                     \\   messaging     time
-                                        \\       |
-angular.module('myApplication', [       \\       |
-  'time',                               \\       |
-  'messaging'                           \\   twitterAdapter
-])                                      \\
-          </code></pre>
-        </section>
-
-        <section>
-          <h2>Modules</h2>
-
-          <p>Angular objects and tests are isolated to a single module and its dependencies.</p>
-
-          <pre><code class="javascript" data-trim>
-angular.module('messaging')
-  .controller('messaging.flashController', function () {
-  });
-          </code></pre>
-
-          <pre><code class="javascript" data-trim>
-describe('messaging.flashController', function () {
-  beforeEach(module('messaging'));
-
-  // tests go here
-)};
-          </code></pre>
-        </section>
-
-        <section>
-          <h2>Binding with <code>$scope</code></h2>
+          <h2>2-way binding with <code>$scope</code></h2>
 
           <p>Angular synchronizes controllers and views with <code>$scope</code>.</p>
 
@@ -465,14 +425,14 @@ describe('messaging.flashController', function () {
 
           <div class="fragment" data-fragment-index="1">
             <p>+</p>
-          </div>
 
-          <pre><code class="javascript" data-trim>
+            <pre><code class="javascript" data-trim>
 angular.module('messaging')
   .controller('messaging.flashController', function ($scope) {
     $scope.message = 'hello';
   });
-          </code></pre>
+            </code></pre>
+          </div>
 
           <div class="fragment" data-fragment-index="1">
             <p>=</p>
@@ -481,8 +441,8 @@ angular.module('messaging')
 <div ng-controller="messaging.flashController">
   <h2>hello</h2>
 </div>
-            </div>
-          </code></pre>
+            </code></pre>
+          </div>
         </section>
 
         <section>
@@ -493,10 +453,54 @@ angular.module('messaging')
           <pre><code class="javascript" data-trim>
 angular.module('messaging')
   .controller('messaging.flashController', function($scope,
-                                                  messagesService) {
+                                                  messagingService) {
 
   });
           </code></pre>
+        </section>
+
+        <section>
+          <h2>Modules</h2>
+
+          <p>Modules allow building application from loosely-coupled, highly-cohesive components.</p>
+
+          <pre><code class="javascript" data-trim>
+angular.module('time', []);             \\
+angular.module('twitterAdapter', []);   \\       myApplication
+angular.module('messaging', [           \\          /     \
+  'twitterAdapter'                      \\         /       \
+]);                                     \\        /         \
+                                        \\   messaging     time
+angular.module('myApplication', [       \\       |
+  'ui.router',                          \\       |
+  'time',                               \\       |
+  'messaging'                           \\  twitterAdapter
+]);                                     \\
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Modules</h2>
+
+          <p>Angular objects</p>
+
+          <pre><code class="javascript" data-trim>
+angular.module('messaging')
+  .controller('messaging.flashController', function () {
+  });
+          </code></pre>
+
+          <p>and tests</p>
+
+          <pre><code class="javascript" data-trim>
+describe('messaging.flashController', function () {
+  beforeEach(module('messaging'));
+
+  // tests go here
+)};
+          </code></pre>
+
+          <p>are isolated to a single module.</p>
         </section>
 
         <section>
@@ -505,7 +509,7 @@ angular.module('messaging')
           <p>We can inject <code>$scope</code> in tests</p>
 
           <pre><code class="javascript" data-trim>
-describe('messages.flashController', function () {
+describe('messaging.flashController', function () {
   var $scope;
   beforeEach(module('messaging'));
 
@@ -514,12 +518,11 @@ describe('messages.flashController', function () {
 
 
 
-    $controller('messages.flashController', {
+    $controller('messaging.flashController', {
       $scope: $scope
 
     });
   }));
-
   // tests go here
 });
             </code></pre>
@@ -531,21 +534,20 @@ describe('messages.flashController', function () {
           <p>We can also inject our own mock objects.</p>
 
           <pre><code class="javascript" data-trim>
-describe('messages.flashController', function () {
-  var $scope, mockMessagingService;
+describe('messaging.flashController', function () {
+  var $scope, messagingService;
   beforeEach(module('messaging'));
 
-  beforeEach(inject(function ($rootScope, $controller) {
+  beforeEach(inject(function (..., _messagingService_) {
     $scope = $rootScope.$new();
-    mockMessagingService = jasmine.createSpyObj(['getMessage']);
-    mockMessagingService.getMessage.and.return('Welcome!');
+    messagingService = _messagingService_;
+    spyOn(messagingService, 'getMessage').and.return('Hi!');
 
-    $controller('messages.flashController', {
+    $controller('messaging.flashController', {
       $scope: $scope,
-      messagingService: mockMessagingService
+      messagingService: messagingService
     });
   }));
-
   // tests go here
 });
             </code></pre>
@@ -554,12 +556,28 @@ describe('messages.flashController', function () {
           <section>
             <h2>First test</h2>
             <pre><code class="javascript" data-trim>
-describe('messages.flashController', function () {
+describe('messaging.flashController', function () {
   // setup
 
   describe('when the controller starts', function () {
     it('loads the message', function () {
-      expect($scope.message).toEqual('Welcome!');
+      expect($scope.message).toEqual('Hi!');
+
+    });
+  });
+});
+            </code></pre>
+          </section>
+
+          <section>
+            <h2>First test</h2>
+            <pre><code class="javascript" data-trim>
+describe('messaging.flashController', function () {
+  // setup
+
+  describe('when the controller starts', function () {
+    it('loads the message', function () {
+      expect($scope.message).toEqual('Hi!');
       expect(messagingService).toHaveBeenCalledWith('initial');
     });
   });
@@ -570,12 +588,12 @@ describe('messages.flashController', function () {
           <section data-background="#b5533c">
             <h2>First test</h2>
             <pre><code class="javascript" data-trim>
-describe('messages.flashController', function () {
+describe('messaging.flashController', function () {
   // setup
 
   describe('when the controller starts', function () {
     it('loads the message', function () {
-      expect($scope.message).toEqual('Welcome!');
+      expect($scope.message).toEqual('Hi!');
       expect(messagingService).toHaveBeenCalledWith('initial');
     });
   });
@@ -589,8 +607,20 @@ describe('messages.flashController', function () {
           <pre><code class="javascript" data-trim>
 angular.module('messaging')
   .controller('messaging.flashController', function($scope,
-                                                  messagesService) {
-    $scope.message = messagesService.getMessage('initial');
+                                                  messagingService) {
+
+  });
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Make it pass!</h2>
+
+          <pre><code class="javascript" data-trim>
+angular.module('messaging')
+  .controller('messaging.flashController', function($scope,
+                                                  messagingService) {
+    $scope.message = messagingService.getMessage('initial');
   });
           </code></pre>
         </section>
@@ -601,8 +631,8 @@ angular.module('messaging')
           <pre><code class="javascript" data-trim>
 angular.module('messaging')
   .controller('messaging.flashController', function($scope,
-                                                  messagesService) {
-    $scope.message = messagesService.getMessage('initial');
+                                                  messagingService) {
+    $scope.message = messagingService.getMessage('initial');
   });
           </code></pre>
         </section>
@@ -613,8 +643,8 @@ angular.module('messaging')
           <pre><code class="javascript" data-trim>
 angular.module('messaging')
   .controller('messaging.flashController', function($scope,
-                                                  messagesService) {
-    $scope.message = messagesService.getMessage('initial');
+                                                  messagingService) {
+    $scope.message = messagingService.getMessage('initial');
   });
           </code></pre>
         </section>
@@ -626,8 +656,8 @@ angular.module('messaging')
           <pre><code class="javascript" data-trim>
 angular.module('messaging')
   .controller('messaging.flashController', function($scope,
-                                                  messagesService) {
-    $scope.message = messagesService.getMessage('initial');
+                                                  messagingService) {
+    $scope.message = messagingService.getMessage('initial');
   });
           </code></pre>
         </section>
@@ -635,7 +665,30 @@ angular.module('messaging')
           <section>
             <h2>Another test</h2>
             <pre><code class="javascript" data-trim>
-describe('messages.flashController', function () {
+describe('messaging.flashController', function () {
+  // tests and setup
+
+  describe('after waiting for inout', function () {
+    it('resets the message', function () {
+      $scope.message = '';
+
+      $timeout.flush(4900);
+      expect($scope.message).toEqual('');
+
+
+
+
+
+    });
+  });
+});
+            </code></pre>
+          </section>
+
+          <section>
+            <h2>Another test</h2>
+            <pre><code class="javascript" data-trim>
+describe('messaging.flashController', function () {
   // tests and setup
 
   describe('after waiting for inout', function () {
@@ -658,7 +711,7 @@ describe('messages.flashController', function () {
           <section data-background="#b5533c">
             <h2>Another test</h2>
             <pre><code class="javascript" data-trim>
-describe('messages.flashController', function () {
+describe('messaging.flashController', function () {
   // tests and setup
 
   describe('after waiting for inout', function () {
@@ -684,11 +737,27 @@ describe('messages.flashController', function () {
           <pre><code class="javascript" data-trim>
 angular.module('messaging')
   .controller('messaging.flashController', function($scope, $timeout,
-                                                  messagesService) {
-    $scope.message = messagesService.getMessage('initial');
+                                                  messagingService) {
+    $scope.message = messagingService.getMessage('initial');
+
+
+
+
+  });
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Make it pass!</h2>
+
+          <pre><code class="javascript" data-trim>
+angular.module('messaging')
+  .controller('messaging.flashController', function($scope, $timeout,
+                                                  messagingService) {
+    $scope.message = messagingService.getMessage('initial');
 
     $timeout(function () {
-      $scope.message = messagesService.getMessage('prompt');
+      $scope.message = messagingService.getMessage('prompt');
     }, 5000);
   });
           </code></pre>
@@ -700,11 +769,11 @@ angular.module('messaging')
           <pre><code class="javascript" data-trim>
 angular.module('messaging')
   .controller('messaging.flashController', function($scope, $timeout,
-                                                  messagesService) {
-    $scope.message = messagesService.getMessage('initial');
+                                                  messagingService) {
+    $scope.message = messagingService.getMessage('initial');
 
     $timeout(function () {
-      $scope.message = messagesService.getMessage('prompt');
+      $scope.message = messagingService.getMessage('prompt');
     }, 5000);
   });
           </code></pre>
@@ -716,11 +785,31 @@ angular.module('messaging')
           <pre><code class="javascript" data-trim>
 angular.module('messaging')
   .controller('messaging.flashController', function($scope, $timeout,
-                                                  messagesService) {
-    $scope.message = messagesService.getMessage('initial');
+                                                  messagingService) {
+    $scope.message = messagingService.getMessage('initial');
 
     $timeout(function () {
-      $scope.message = messagesService.getMessage('prompt');
+      $scope.message = messagingService.getMessage('prompt');
+    }, 5000);
+  });
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Refactor!</h2>
+
+          <pre><code class="javascript" data-trim>
+angular.module('messaging')
+  .controller('messaging.flashController', function($scope, $timeout,
+                                                  messagingService) {
+    function setMessage(type) {
+      $scope.message = messagingService.getMessage(type);
+    };
+
+    setMessage('initial');
+
+    $timeout(function () {
+      setMessage('prompt');
     }, 5000);
   });
           </code></pre>
@@ -732,9 +821,9 @@ angular.module('messaging')
           <pre><code class="javascript" data-trim>
 angular.module('messaging')
   .controller('messaging.flashController', function($scope, $timeout,
-                                                  messagesService) {
+                                                  messagingService) {
     function setMessage(type) {
-      $scope.message = messagesService.getMessage(type);
+      $scope.message = messagingService.getMessage(type);
     };
 
     setMessage('initial');
