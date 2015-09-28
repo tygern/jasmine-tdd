@@ -71,8 +71,8 @@ describe('messaging.flashController', function () {
     });
   });
 
-  describe('after waiting for input', function () {
-    it('resets the message', function () {
+  describe('after waiting 5 seconds', function () {
+    it('shows the \'prompt\' message', function () {
       $scope.message = '';
 
       $timeout.flush(4900);

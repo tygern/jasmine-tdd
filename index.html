@@ -577,6 +577,32 @@ describe('messaging.flashController', function () {
             </code></pre>
         </section>
 
+        <section>
+          <h2>Example!</h2>
+        </section>
+
+        <section>
+          <h2>Feature</h2>
+          <p>Show initial greeting when the page loads</p>
+        </section>
+
+          <section>
+            <h2>Add a Test</h2>
+            <pre><code class="javascript" data-trim>
+describe('messaging.flashController', function () {
+  // setup
+
+  describe('when the controller starts', function () {
+    it('loads the message', function () {
+
+
+
+    });
+  });
+});
+            </code></pre>
+          </section>
+
           <section>
             <h2>Add a Test</h2>
             <pre><code class="javascript" data-trim>
@@ -690,13 +716,42 @@ angular.module('messaging')
         </section>
 
           <section>
-            <h2>Add a Test</h2>
+            <h2>Another Feature</h2>
+            <p>Change the message to prompt the user after 5 seconds</p>
+          </section>
+
+          <section>
+            <h2>Add another Test</h2>
             <pre><code class="javascript" data-trim>
 describe('messaging.flashController', function () {
   // tests and setup
 
-  describe('after waiting for input', function () {
-    it('resets the message', function () {
+  describe('after waiting 5 seconds', function () {
+    it('shows the \'prompt\' message', function () {
+
+
+
+
+
+
+
+
+
+
+    });
+  });
+});
+            </code></pre>
+          </section>
+
+          <section>
+            <h2>Add another Test</h2>
+            <pre><code class="javascript" data-trim>
+describe('messaging.flashController', function () {
+  // tests and setup
+
+  describe('after waiting 5 seconds', function () {
+    it('shows the \'prompt\' message', function () {
       $scope.message = '';
 
       $timeout.flush(4900);
@@ -714,13 +769,13 @@ describe('messaging.flashController', function () {
           </section>
 
           <section>
-            <h2>Add a Test</h2>
+            <h2>Add another Test</h2>
             <pre><code class="javascript" data-trim>
 describe('messaging.flashController', function () {
   // tests and setup
 
-  describe('after waiting for input', function () {
-    it('resets the message', function () {
+  describe('after waiting 5 seconds', function () {
+    it('shows the \'prompt\' message', function () {
       $scope.message = '';
 
       $timeout.flush(4900);
@@ -738,13 +793,13 @@ describe('messaging.flashController', function () {
           </section>
 
           <section data-background="#b5533c">
-            <h2>Add a Test</h2>
+            <h2>Add another Test</h2>
             <pre><code class="javascript" data-trim>
 describe('messaging.flashController', function () {
   // tests and setup
 
-  describe('after waiting for input', function () {
-    it('resets the message', function () {
+  describe('after waiting 5 seconds', function () {
+    it('shows the \'prompt\' message', function () {
       $scope.message = '';
 
       $timeout.flush(4900);
