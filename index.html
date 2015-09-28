@@ -376,8 +376,7 @@ describe('timeProvider', function () {
             <h2>Testing Asynchronous Code</h2>
 
             <p>
-              Jasmine passes a <code>done</code> function as an argument to each function
-              passed to <code>it</code>.
+              Jasmine passes a <code>done</code> function to the test function.
             </p>
 
             <pre><code class="javascript" data-trim>
@@ -410,13 +409,13 @@ it('takes done as an argument', function (done) {
             </p>
 
             <pre><code class="javascript" data-trim>
-it('will pass', function (done) {
+it('will pass if completed before timeout', function (done) {
   setTimeout(function () {
     done();
   }, 4000);
 });
 
-it('will fail', function (done) {
+it('will fail if completed after timeout', function (done) {
   setTimeout(function () {
     done();
   }, 6000);

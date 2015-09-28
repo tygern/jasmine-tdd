@@ -39,8 +39,12 @@ describe('timeProvider', function () {
   });
 });
 
-describe('the done function', function () {
-  it('will pass', function (done) {
+describe('testing asynchronous code', function () {
+  it('takes done as an argument', function (done) {
+    done();
+  });
+
+  it('will pass if completed before timeout', function (done) {
     setTimeout(function () {
       done();
     }, 100);
