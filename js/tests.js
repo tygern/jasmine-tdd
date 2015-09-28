@@ -1,61 +1,90 @@
-describe('describe organizes tests', function() {
-  it('it runs a test with expectations', function() {
-    expect(1 === 1).toBe(true);
+describe('square', function () {
+  it('squares the number', function () {
+    expect(square(1)).toEqual(1);
+    expect(square(3)).toEqual(9);
+    expect(square(-4)).toEqual(16);
   });
 });
 
-describe('jasmine matchers', function() {
-  it('contains a variety of matchers', function() {
-    expect(true).toBe(true);
-    expect({some: 'object'}).not.toBe({some: 'object'});
-    expect({some: 'object'}).toEqual({some: 'object'});
-    expect(3).toBeLessThan(4);
-    expect({some: 'object'}.notThere).toBeUndefined();
-    expect('there are many more matchers').toBeTruthy();
+describe('square', function () {
+  it('has other matchers', function () {
+    expect(square(3)).not.toEqual(8);
+    expect(square(5)).toBeGreaterThan(20);
+    expect(square("a")).toBeUndefined();
   });
 });
 
-describe('test setup', function() {
-  var a;
+describe('timeProvider', function () {
+  var timeProvider;
 
-  beforeEach(function() {
-    a = 1
+  beforeEach(function () {
+    timeProvider = {
+      dayOfWeek: function () {
+        return 'Thursday';
+      }
+    };
   });
 
-  it('beforeEach is run before each test', function() {
-    expect(a).toBe(1);
-  });
-});
-
-describe('mocking', function() {
-  var generator;
-  beforeEach(function() {
-    generator = { getRandom: function(max) { return max * Math.random(); }}
+  afterEach(function () {
+    timeProvider = {};
   });
 
-  it('spyOn allows mocking functions', function() {
-    spyOn(generator, 'getRandom').and.returnValue(42);
+  it('tracks calls and arguments', function () {
+    spyOn(timeProvider, 'dayOfWeek').and.returnValue('Monday');
 
-    var result = generator.getRandom(50);
+    var result = timeProvider.dayOfWeek('capital');
 
-    expect(result).toBe(42);
-    expect(generator.getRandom).toHaveBeenCalled();
-    expect(generator.getRandom).toHaveBeenCalledWith(50);
-    expect(generator.getRandom.calls.count()).toBe(1);
+    expect(result).toEqual('Monday');
+    expect(timeProvider.dayOfWeek).toHaveBeenCalled();
+    expect(timeProvider.dayOfWeek).toHaveBeenCalledWith('capital');
+    expect(timeProvider.dayOfWeek.calls.count()).toEqual(1);
   });
 });
 
-describe('asynchronous tests', function() {
-  it('wait until done is called', function (done) {
-    var p = new Promise(function (resolve) {
-      setTimeout(function () {
-        resolve('The test is done!');
-      }, 100);
-    });
-
-    p.then(function (message) {
-      expect(message).toBe('The test is done!');
+describe('the done function', function () {
+  it('will pass', function (done) {
+    setTimeout(function () {
       done();
+    }, 100);
+  });
+});
+
+describe('messaging.flashController', function () {
+  var $scope, messagingService, $timeout;
+  beforeEach(module('messaging'));
+
+  beforeEach(inject(function ($rootScope, $controller, _$timeout_, _messagingService_) {
+    $scope = $rootScope.$new();
+    $timeout = _$timeout_;
+    messagingService = _messagingService_;
+    spyOn(messagingService, 'getMessage').and.returnValue('Hi!');
+
+    $controller('messaging.flashController', {
+      $scope: $scope,
+      messagingService: messagingService
+    });
+  }));
+
+  describe('when the controller starts', function () {
+    it('loads the message', function () {
+      expect($scope.message).toEqual('Hi!');
+      expect(messagingService.getMessage)
+        .toHaveBeenCalledWith('initial');
+    });
+  });
+
+  describe('after waiting for input', function () {
+    it('resets the message', function () {
+      $scope.message = '';
+
+      $timeout.flush(4900);
+      expect($scope.message).toEqual('');
+
+      $timeout.flush(5100);
+
+      expect($scope.message).toEqual('Hi!');
+      expect(messagingService.getMessage)
+        .toHaveBeenCalledWith('prompt');
     });
   });
 });

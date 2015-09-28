@@ -227,7 +227,7 @@ describe('timeProvider', function () {
 
   beforeEach(function () {
     timeProvider = {
-      dayOfWeek: function () {return('Thursday');}
+      dayOfWeek: function () {return 'Thursday';}
     };
   });
 
@@ -251,7 +251,7 @@ describe('timeProvider', function () {
 
   beforeEach(function () {
     timeProvider = {
-      dayOfWeek: function () {return('Thursday');}
+      dayOfWeek: function () {return 'Thursday';}
     };
   });
 
@@ -489,17 +489,17 @@ angular.module('messaging')
           <p>Modules allow building application from loosely-coupled, highly-cohesive components.</p>
 
           <pre><code class="javascript" data-trim>
-angular.module('time', []);             \\
-angular.module('twitterAdapter', []);   \\       myApplication
-angular.module('messaging', [           \\          /     \
-  'twitterAdapter'                      \\         /       \
-]);                                     \\        /         \
-                                        \\   messaging     time
-angular.module('myApplication', [       \\       |
-  'ui.router',                          \\       |
-  'time',                               \\       |
-  'messaging'                           \\  twitterAdapter
-]);                                     \\
+angular.module('time', []);             //
+angular.module('twitterAdapter', []);   //       myApplication
+angular.module('messaging', [           //          /     \
+  'twitterAdapter'                      //         /       \
+]);                                     //        /         \
+                                        //   messaging     time
+angular.module('myApplication', [       //       |
+  'ui.router',                          //       |
+  'time',                               //       |
+  'messaging'                           //  twitterAdapter
+]);                                     //
           </code></pre>
         </section>
 
@@ -565,7 +565,7 @@ describe('messaging.flashController', function () {
   beforeEach(inject(function (..., _messagingService_) {
     $scope = $rootScope.$new();
     messagingService = _messagingService_;
-    spyOn(messagingService, 'getMessage').and.return('Hi!');
+    spyOn(messagingService, 'getMessage').and.returnValue('Hi!');
 
     $controller('messaging.flashController', {
       $scope: $scope,
@@ -578,7 +578,7 @@ describe('messaging.flashController', function () {
         </section>
 
           <section>
-            <h2>First test</h2>
+            <h2>Add a Test</h2>
             <pre><code class="javascript" data-trim>
 describe('messaging.flashController', function () {
   // setup
@@ -586,6 +586,7 @@ describe('messaging.flashController', function () {
   describe('when the controller starts', function () {
     it('loads the message', function () {
       expect($scope.message).toEqual('Hi!');
+
 
     });
   });
@@ -594,7 +595,7 @@ describe('messaging.flashController', function () {
           </section>
 
           <section>
-            <h2>First test</h2>
+            <h2>Add a Test</h2>
             <pre><code class="javascript" data-trim>
 describe('messaging.flashController', function () {
   // setup
@@ -602,7 +603,8 @@ describe('messaging.flashController', function () {
   describe('when the controller starts', function () {
     it('loads the message', function () {
       expect($scope.message).toEqual('Hi!');
-      expect(messagingService).toHaveBeenCalledWith('initial');
+      expect(messagingService.getMessage())
+              .toHaveBeenCalledWith('initial');
     });
   });
 });
@@ -610,7 +612,7 @@ describe('messaging.flashController', function () {
           </section>
 
           <section data-background="#b5533c">
-            <h2>First test</h2>
+            <h2>Add a Test</h2>
             <pre><code class="javascript" data-trim>
 describe('messaging.flashController', function () {
   // setup
@@ -618,7 +620,8 @@ describe('messaging.flashController', function () {
   describe('when the controller starts', function () {
     it('loads the message', function () {
       expect($scope.message).toEqual('Hi!');
-      expect(messagingService).toHaveBeenCalledWith('initial');
+      expect(messagingService.getMessage())
+              .toHaveBeenCalledWith('initial');
     });
   });
 });
@@ -687,17 +690,18 @@ angular.module('messaging')
         </section>
 
           <section>
-            <h2>Another test</h2>
+            <h2>Add a Test</h2>
             <pre><code class="javascript" data-trim>
 describe('messaging.flashController', function () {
   // tests and setup
 
-  describe('after waiting for inout', function () {
+  describe('after waiting for input', function () {
     it('resets the message', function () {
       $scope.message = '';
 
       $timeout.flush(4900);
       expect($scope.message).toEqual('');
+
 
 
 
@@ -710,12 +714,12 @@ describe('messaging.flashController', function () {
           </section>
 
           <section>
-            <h2>Another test</h2>
+            <h2>Add a Test</h2>
             <pre><code class="javascript" data-trim>
 describe('messaging.flashController', function () {
   // tests and setup
 
-  describe('after waiting for inout', function () {
+  describe('after waiting for input', function () {
     it('resets the message', function () {
       $scope.message = '';
 
@@ -724,8 +728,9 @@ describe('messaging.flashController', function () {
 
       $timeout.flush(5100);
 
-      expect($scope.message).toEqual('Welcome!');
-      expect(messagingService).toHaveBeenCalledWith('prompt');
+      expect($scope.message).toEqual('Hi!');
+      expect(messagingService.getMessage)
+              .toHaveBeenCalledWith('prompt');
     });
   });
 });
@@ -733,12 +738,12 @@ describe('messaging.flashController', function () {
           </section>
 
           <section data-background="#b5533c">
-            <h2>Another test</h2>
+            <h2>Add a Test</h2>
             <pre><code class="javascript" data-trim>
 describe('messaging.flashController', function () {
   // tests and setup
 
-  describe('after waiting for inout', function () {
+  describe('after waiting for input', function () {
     it('resets the message', function () {
       $scope.message = '';
 
@@ -747,8 +752,9 @@ describe('messaging.flashController', function () {
 
       $timeout.flush(5100);
 
-      expect($scope.message).toEqual('Welcome!');
-      expect(messagingService).toHaveBeenCalledWith('prompt');
+      expect($scope.message).toEqual('Hi!');
+      expect(messagingService.getMessage)
+              .toHaveBeenCalledWith('prompt');
     });
   });
 });
@@ -828,7 +834,7 @@ angular.module('messaging')
                                                   messagingService) {
     function setMessage(type) {
       $scope.message = messagingService.getMessage(type);
-    };
+    }
 
     setMessage('initial');
 
@@ -848,7 +854,7 @@ angular.module('messaging')
                                                   messagingService) {
     function setMessage(type) {
       $scope.message = messagingService.getMessage(type);
-    };
+    }
 
     setMessage('initial');
 
