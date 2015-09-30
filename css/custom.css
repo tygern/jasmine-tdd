@@ -106,3 +106,7 @@ p code {
 h1, h2 {
   word-spacing: 10px;
 }
+
+.reveal pre code {
+  max-height: 500px;
+}

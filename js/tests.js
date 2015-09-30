@@ -92,16 +92,17 @@ describe('messaging.flashController', function () {
 });
 
 describe('users.currentController', function () {
-  var $scope, usersService, currentDeferred;
+  var $scope, usersService, deferred;
   beforeEach(module('users'));
 
-  beforeEach(inject(function ($rootScope, $controller, $q, _usersService_) {
+  beforeEach(inject(function ($rootScope, $controller, $q,
+                              _usersService_) {
     $scope = $rootScope.$new();
     usersService = _usersService_;
 
-    currentDeferred = $q.defer();
+    deferred = $q.defer();
     spyOn(usersService, 'getCurrent')
-      .and.returnValue(currentDeferred.promise);
+      .and.returnValue(deferred.promise);
 
     $controller('users.currentController', {
       $scope: $scope,
@@ -113,7 +114,7 @@ describe('users.currentController', function () {
     it('sets the current user', function () {
       expect($scope.currentUser).toEqual('Loading');
 
-      currentDeferred.resolve('@walken20');
+      deferred.resolve('@walken20');
       $scope.$apply();
 
       expect($scope.currentUser).toEqual('@walken20');

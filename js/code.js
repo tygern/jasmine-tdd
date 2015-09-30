@@ -47,10 +47,11 @@ angular.module('users')
 
 angular.module('users')
   .controller('users.currentController', function($scope, usersService) {
-    $scope.currentUser = 'Loading';
+    function setCurrentUser(user) {
+      $scope.currentUser = user;
+    }
 
-    usersService.getCurrent().then(function (result) {
-      $scope.currentUser = result;
-    });
+    setCurrentUser('Loading');
 
+    usersService.getCurrent().then(setCurrentUser);
   });

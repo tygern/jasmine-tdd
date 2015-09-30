@@ -924,22 +924,24 @@ angular.module('messaging')
         </section>
 
         <section>
-          <h2>Add a Test</h2>
+          <h2>Setup</h2>
             <pre><code class="javascript" data-trim>
 describe('users.currentController', function () {
-  var $scope, usersService, currentDeferred;
+  var $scope, usersService, deferred;
   beforeEach(module('users'));
 
-  beforeEach(inject(function ($rootScope, $controller, $q, _usersService_) {
+  beforeEach(inject(function ($rootScope, $controller, $q,
+                              _usersService_) {
     $scope = $rootScope.$new();
     usersService = _usersService_;
 
-    currentDeferred = $q.defer();
-    spyOn(usersService, 'getCurrent')
-      .and.returnValue(currentDeferred.promise);
+
+
+
 
     $controller('users.currentController', {
-      $scope: $scope, usersService: usersService
+      $scope: $scope,
+      usersService: usersService
     });
   }));
 
@@ -949,18 +951,254 @@ describe('users.currentController', function () {
         </section>
 
         <section>
-          <h2>Make it Pass</h2>
+          <h2>Setup</h2>
+            <pre><code class="javascript" data-trim>
+describe('users.currentController', function () {
+  var $scope, usersService, deferred;
+  beforeEach(module('users'));
+
+  beforeEach(inject(function ($rootScope, $controller, $q,
+                              _usersService_) {
+    $scope = $rootScope.$new();
+    usersService = _usersService_;
+
+    deferred = $q.defer();
+
+
+
+    $controller('users.currentController', {
+      $scope: $scope,
+      usersService: usersService
+    });
+  }));
+
+  // tests go here
+});
+            </code></pre>
+        </section>
+
+        <section>
+          <h2>Setup</h2>
+            <pre><code class="javascript" data-trim>
+describe('users.currentController', function () {
+  var $scope, usersService, deferred;
+  beforeEach(module('users'));
+
+  beforeEach(inject(function ($rootScope, $controller, $q,
+                              _usersService_) {
+    $scope = $rootScope.$new();
+    usersService = _usersService_;
+
+    deferred = $q.defer();
+    spyOn(usersService, 'getCurrent')
+      .and.returnValue(deferred.promise);
+
+    $controller('users.currentController', {
+      $scope: $scope,
+      usersService: usersService
+    });
+  }));
+
+  // tests go here
+});
+            </code></pre>
+        </section>
+
+        <section>
+          <h2>Add a Test</h2>
+            <pre><code class="javascript" data-trim>
+describe('when the controller loads', function () {
+  it('sets the current user', function () {
+
+
+
+
+
+
+  });
+});
+            </code></pre>
+        </section>
+
+        <section>
+          <h2>Add a Test</h2>
             <pre><code class="javascript" data-trim>
 describe('when the controller loads', function () {
   it('sets the current user', function () {
     expect($scope.currentUser).toEqual('Loading');
 
-    currentDeferred.resolve('@walken20');
+
+
+
+
+  });
+});
+            </code></pre>
+        </section>
+
+        <section>
+          <h2>Add a Test</h2>
+            <pre><code class="javascript" data-trim>
+describe('when the controller loads', function () {
+  it('sets the current user', function () {
+    expect($scope.currentUser).toEqual('Loading');
+
+    deferred.resolve('@walken20');
+
+
+
+  });
+});
+            </code></pre>
+        </section>
+
+        <section>
+          <h2>Add a Test</h2>
+            <pre><code class="javascript" data-trim>
+describe('when the controller loads', function () {
+  it('sets the current user', function () {
+    expect($scope.currentUser).toEqual('Loading');
+
+    deferred.resolve('@walken20');
+    $scope.$apply();
+
+
+  });
+});
+            </code></pre>
+        </section>
+
+        <section>
+          <h2>Add a Test</h2>
+            <pre><code class="javascript" data-trim>
+describe('when the controller loads', function () {
+  it('sets the current user', function () {
+    expect($scope.currentUser).toEqual('Loading');
+
+    deferred.resolve('@walken20');
     $scope.$apply();
 
     expect($scope.currentUser).toEqual('@walken20');
   });
 });
+            </code></pre>
+        </section>
+
+        <section data-background="#b5533c">
+          <h2>Add a Test</h2>
+            <pre><code class="javascript" data-trim>
+describe('when the controller loads', function () {
+  it('sets the current user', function () {
+    expect($scope.currentUser).toEqual('Loading');
+
+    deferred.resolve('@walken20');
+    $scope.$apply();
+
+    expect($scope.currentUser).toEqual('@walken20');
+  });
+});
+            </code></pre>
+        </section>
+
+        <section>
+          <h2>Make it Pass</h2>
+            <pre><code class="javascript" data-trim>
+angular.module('users')
+  .controller('users.currentController', function($scope, usersService) {
+
+
+
+
+
+  });
+            </code></pre>
+        </section>
+
+        <section>
+          <h2>Make it Pass</h2>
+            <pre><code class="javascript" data-trim>
+angular.module('users')
+  .controller('users.currentController', function($scope, usersService) {
+    $scope.currentUser = 'Loading';
+
+
+
+
+  });
+            </code></pre>
+        </section>
+
+        <section>
+          <h2>Make it Pass</h2>
+            <pre><code class="javascript" data-trim>
+angular.module('users')
+  .controller('users.currentController', function($scope, usersService) {
+    $scope.currentUser = 'Loading';
+
+    usersService.getCurrent().then(function (result) {
+      $scope.currentUser = result;
+    });
+  });
+            </code></pre>
+        </section>
+
+        <section data-background="#4d7e65">
+          <h2>Make it Pass</h2>
+            <pre><code class="javascript" data-trim>
+angular.module('users')
+  .controller('users.currentController', function($scope, usersService) {
+    $scope.currentUser = 'Loading';
+
+    usersService.getCurrent().then(function (result) {
+      $scope.currentUser = result;
+    });
+  });
+            </code></pre>
+        </section>
+
+        <section>
+          <h2>Refactor?</h2>
+            <pre><code class="javascript" data-trim>
+angular.module('users')
+  .controller('users.currentController', function($scope, usersService) {
+    $scope.currentUser = 'Loading';
+
+    usersService.getCurrent().then(function (result) {
+      $scope.currentUser = result;
+    });
+  });
+            </code></pre>
+        </section>
+
+        <section>
+          <h2>Refactor!</h2>
+            <pre><code class="javascript" data-trim>
+angular.module('users')
+  .controller('users.currentController', function($scope, usersService) {
+    function setCurrentUser(user) {
+      $scope.currentUser = user;
+    }
+
+    setCurrentUser('Loading');
+
+    usersService.getCurrent().then(setCurrentUser);
+  });
+            </code></pre>
+        </section>
+
+        <section data-background="#4d657e">
+          <h2>Refactor!</h2>
+            <pre><code class="javascript" data-trim>
+angular.module('users')
+  .controller('users.currentController', function($scope, usersService) {
+    function setCurrentUser(user) {
+      $scope.currentUser = user;
+    }
+
+    setCurrentUser('Loading');
+
+    usersService.getCurrent().then(setCurrentUser);
+  });
             </code></pre>
         </section>
 
