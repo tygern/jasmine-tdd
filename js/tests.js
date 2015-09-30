@@ -67,8 +67,8 @@ describe('messaging.flashController', function () {
     });
   }));
 
-  describe('when the controller starts', function () {
-    it('loads the message', function () {
+  describe('when the controller loads', function () {
+    it('sets the message', function () {
       expect($scope.message).toEqual('Hi!');
       expect(messagingService.getMessage)
         .toHaveBeenCalledWith('initial');
@@ -87,6 +87,36 @@ describe('messaging.flashController', function () {
       expect($scope.message).toEqual('Hi!');
       expect(messagingService.getMessage)
         .toHaveBeenCalledWith('prompt');
+    });
+  });
+});
+
+describe('users.currentController', function () {
+  var $scope, usersService, currentDeferred;
+  beforeEach(module('users'));
+
+  beforeEach(inject(function ($rootScope, $controller, $q, _usersService_) {
+    $scope = $rootScope.$new();
+    usersService = _usersService_;
+
+    currentDeferred = $q.defer();
+    spyOn(usersService, 'getCurrent')
+      .and.returnValue(currentDeferred.promise);
+
+    $controller('users.currentController', {
+      $scope: $scope,
+      usersService: usersService
+    });
+  }));
+
+  describe('when the controller loads', function () {
+    it('sets the current user', function () {
+      expect($scope.currentUser).toEqual('Loading');
+
+      currentDeferred.resolve('@walken20');
+      $scope.$apply();
+
+      expect($scope.currentUser).toEqual('@walken20');
     });
   });
 });

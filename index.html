@@ -488,15 +488,15 @@ angular.module('messaging')
           <p>Modules allow building application from loosely-coupled, highly-cohesive components.</p>
 
           <pre><code class="javascript" data-trim>
-angular.module('time', []);             //
+angular.module('users', []);            //
 angular.module('twitterAdapter', []);   //       myApplication
 angular.module('messaging', [           //          /     \
   'twitterAdapter'                      //         /       \
 ]);                                     //        /         \
-                                        //   messaging     time
+                                        //   messaging     users
 angular.module('myApplication', [       //       |
   'ui.router',                          //       |
-  'time',                               //       |
+  'users',                              //       |
   'messaging'                           //  twitterAdapter
 ]);                                     //
           </code></pre>
@@ -591,8 +591,8 @@ describe('messaging.flashController', function () {
 describe('messaging.flashController', function () {
   // setup
 
-  describe('when the controller starts', function () {
-    it('loads the message', function () {
+  describe('when the controller loads', function () {
+    it('sets the message', function () {
 
 
 
@@ -608,8 +608,8 @@ describe('messaging.flashController', function () {
 describe('messaging.flashController', function () {
   // setup
 
-  describe('when the controller starts', function () {
-    it('loads the message', function () {
+  describe('when the controller loads', function () {
+    it('sets the message', function () {
       expect($scope.message).toEqual('Hi!');
 
 
@@ -625,8 +625,8 @@ describe('messaging.flashController', function () {
 describe('messaging.flashController', function () {
   // setup
 
-  describe('when the controller starts', function () {
-    it('loads the message', function () {
+  describe('when the controller loads', function () {
+    it('sets the message', function () {
       expect($scope.message).toEqual('Hi!');
       expect(messagingService.getMessage())
               .toHaveBeenCalledWith('initial');
@@ -642,8 +642,8 @@ describe('messaging.flashController', function () {
 describe('messaging.flashController', function () {
   // setup
 
-  describe('when the controller starts', function () {
-    it('loads the message', function () {
+  describe('when the controller loads', function () {
+    it('sets the message', function () {
       expect($scope.message).toEqual('Hi!');
       expect(messagingService.getMessage())
               .toHaveBeenCalledWith('initial');
@@ -714,7 +714,7 @@ angular.module('messaging')
         </section>
 
           <section>
-            <h2>Another Feature</h2>
+            <h2>Feature</h2>
             <p>Change the message to prompt the user after 5 seconds</p>
           </section>
 
@@ -917,6 +917,54 @@ angular.module('messaging')
   });
           </code></pre>
         </section>
+
+        <section>
+          <h2>Feature</h2>
+          <p>Show the current user</p>
+        </section>
+
+        <section>
+          <h2>Add a Test</h2>
+            <pre><code class="javascript" data-trim>
+describe('users.currentController', function () {
+  var $scope, usersService, currentDeferred;
+  beforeEach(module('users'));
+
+  beforeEach(inject(function ($rootScope, $controller, $q, _usersService_) {
+    $scope = $rootScope.$new();
+    usersService = _usersService_;
+
+    currentDeferred = $q.defer();
+    spyOn(usersService, 'getCurrent')
+      .and.returnValue(currentDeferred.promise);
+
+    $controller('users.currentController', {
+      $scope: $scope, usersService: usersService
+    });
+  }));
+
+  // tests go here
+});
+            </code></pre>
+        </section>
+
+        <section>
+          <h2>Make it Pass</h2>
+            <pre><code class="javascript" data-trim>
+describe('when the controller loads', function () {
+  it('sets the current user', function () {
+    expect($scope.currentUser).toEqual('Loading');
+
+    currentDeferred.resolve('@walken20');
+    $scope.$apply();
+
+    expect($scope.currentUser).toEqual('@walken20');
+  });
+});
+            </code></pre>
+        </section>
+
+
 
         <section>
           <h1>Thanks!</h1>

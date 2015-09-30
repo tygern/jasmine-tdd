@@ -3,7 +3,7 @@ function square(x) {
     return x * x;
 }
 
-angular.module('time', []);
+angular.module('users', []);
 angular.module('twitterAdapter', []);
 angular.module('messaging', [
   'twitterAdapter'
@@ -11,7 +11,7 @@ angular.module('messaging', [
 
 angular.module('myApplication', [
   'ui.router',
-  'time',
+  'users',
   'messaging'
 ]);
 
@@ -35,4 +35,22 @@ angular.module('messaging')
     $timeout(function () {
       setMessage('prompt');
     }, 5000);
+  });
+
+angular.module('users')
+  .service('usersService', function () {
+    return {
+      getCurrent: function () {
+      }
+    }
+  });
+
+angular.module('users')
+  .controller('users.currentController', function($scope, usersService) {
+    $scope.currentUser = 'Loading';
+
+    usersService.getCurrent().then(function (result) {
+      $scope.currentUser = result;
+    });
+
   });
