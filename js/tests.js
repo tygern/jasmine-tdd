@@ -1,54 +1,5 @@
-describe('square', function () {
-  it('squares the number', function () {
-    expect(square(1)).toEqual(1);
-    expect(square(3)).toEqual(9);
-    expect(square(-4)).toEqual(16);
-  });
+describe('pushThenDouble', function () {
 
-  it('has other matchers', function () {
-    expect(square(3)).not.toEqual(8);
-    expect(square(5)).toBeGreaterThan(20);
-    expect(square("a")).toBeUndefined();
-  });
-});
-
-describe('timeProvider', function () {
-  var timeProvider;
-
-  beforeEach(function () {
-    timeProvider = {
-      dayOfWeek: function () {
-        return 'Thursday';
-      }
-    };
-  });
-
-  afterEach(function () {
-    timeProvider = {};
-  });
-
-  it('tracks calls and arguments', function () {
-    spyOn(timeProvider, 'dayOfWeek').and.returnValue('Monday');
-
-    var result = timeProvider.dayOfWeek('capital');
-
-    expect(result).toEqual('Monday');
-    expect(timeProvider.dayOfWeek).toHaveBeenCalled();
-    expect(timeProvider.dayOfWeek).toHaveBeenCalledWith('capital');
-    expect(timeProvider.dayOfWeek.calls.count()).toEqual(1);
-  });
-});
-
-describe('testing asynchronous code', function () {
-  it('takes done as an argument', function (done) {
-    done();
-  });
-
-  it('will pass if completed before timeout', function (done) {
-    setTimeout(function () {
-      done();
-    }, 100);
-  });
 });
 
 describe('messaging.flashController', function () {
@@ -82,7 +33,7 @@ describe('messaging.flashController', function () {
       $timeout.flush(4900);
       expect($scope.message).toEqual('');
 
-      $timeout.flush(5100);
+      $timeout.flush(200);
 
       expect($scope.message).toEqual('Hi!');
       expect(messagingService.getMessage)

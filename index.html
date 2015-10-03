@@ -48,16 +48,44 @@
 					<div class="pivotal-labs logo"></div>
 				</section>
 
-				<section>
-					<h2>Introduction</h2>
+        <section>
+          <h2>Introduction</h2>
           <ul>
             <li class="fragment">Software Engineer at Pivotal Labs</li>
             <li class="fragment">100% TDD and Pair Programming</li>
             <li class="fragment">We're new in town</li>
             <li class="fragment">We're hiring! (<a href="http://www.pivotaldublin.com">pivotaldublin.com</a>)</li>
           </ul>
-					<div class="pivotal-labs logo"></div>
-				</section>
+          <div class="pivotal-labs logo"></div>
+        </section>
+
+        <section>
+          <ul>
+            <li>TDD results in clean, maintainable code.</li>
+            <li class="fragment">You should be testing your javascript.</li>
+            <li class="fragment">Jasmine + AngularJS is a great way to start!</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Tools</h2>
+
+          <ul>
+            <li class="fragment"><a href="https://github.com/karma-runner/karma-jasmine">karma-jasmine</a> runs javascript tests on the command line</li>
+            <li class="fragment">Integrates with popular task runners
+              <ul>
+                <li><code>gulp</code> — <a href="https://github.com/karma-runner/gulp-karma">gulp-karma</a></li>
+                <li><code>grunt</code> — <a href="https://github.com/karma-runner/grunt-karma">grunt-karma</a></li>
+              </ul>
+            </li>
+            <li class="fragment">Yeoman generators
+              <ul>
+                <li><code>gulp</code> — <a href="https://github.com/Swiip/generator-gulp-angular">generator-gulp-angular</a></li>
+                <li><code>grunt</code> — <a href="https://github.com/yeoman/generator-angular">generator-angular</a></li>
+              </ul>
+            </li>
+          </ul>
+        </section>
 
         <!--TDD Basics-->
         <section>
@@ -138,290 +166,19 @@
         </section>
 
         <!--Jasmine-->
-          <section>
-            <h2>What is Jasmine?</h2>
-            <ul>
-              <li class="fragment">BDD/TDD framework for javascript</li>
-              <li class="fragment">Developed by Pivotal Labs</li>
-              <li class="fragment">Framework independent</li>
-            </ul>
-            <div class="jasmine logo"></div>
-          </section>
-
-          <section>
-            <p>The <code>describe</code> function helps to organize tests</p>
-
-            <pre><code class="javascript" data-trim>
-describe('square', function () {
-
-
-
-
-
-});
-            </code></pre>
-          </section>
-
-          <section>
-            <p>The <code>it</code> function runs a test function</p>
-
-            <pre><code class="javascript" data-trim>
-describe('square', function () {
-  it('squares the number', function () {
-
-
-
-  });
-});
-            </code></pre>
-          </section>
-
-          <section>
-            <p>The <code>expect</code> function defines the expected behavior</p>
-
-            <pre><code class="javascript" data-trim>
-describe('square', function () {
-  it('squares the number', function () {
-    expect(square(1)).toEqual(1);
-    expect(square(3)).toEqual(9);
-    expect(square(-4)).toEqual(16);
-  });
-});
-            </code></pre>
-          </section>
-
-          <section>
-            <p>The <code>toEqual</code> matcher function checks for equality</p>
-
-            <pre><code class="javascript" data-trim>
-describe('square', function () {
-  it('squares the number', function () {
-    expect(square(1)).toEqual(1);
-    expect(square(3)).toEqual(9);
-    expect(square(-4)).toEqual(16);
-  });
-});
-            </code></pre>
-          </section>
-
-          <section>
-            <p>Jasmine has many useful matchers</p>
-
-            <pre><code class="javascript" data-trim>
-describe('square', function () {
-  it('has other matchers', function () {
-    expect(square(3)).not.toEqual(8);
-    expect(square(5)).toBeGreaterThan(20);
-    expect(square("a")).toBeUndefined();
-  });
-});
-            </code></pre>
-          </section>
-
-          <section>
-            <p><code>beforeEach</code> runs a test setup function</p>
-
-            <pre><code class="javascript" data-trim>
-describe('timeProvider', function () {
-  var timeProvider;
-
-  beforeEach(function () {
-    timeProvider = {
-      dayOfWeek: function () {return 'Thursday';}
-    };
-  });
-
-
-
-
-
-  // tests go here
-});
-            </code></pre>
-
-            <p>&nbsp;</p>
-          </section>
-
-          <section>
-            <p><code>beforeEach</code> runs a test setup function</p>
-
-            <pre><code class="javascript" data-trim>
-describe('timeProvider', function () {
-  var timeProvider;
-
-  beforeEach(function () {
-    timeProvider = {
-      dayOfWeek: function () {return 'Thursday';}
-    };
-  });
-
-  afterEach(function () {
-    timeProvider = {};
-  });
-
-  // tests go here
-});
-            </code></pre>
-
-            <p><code>afterEach</code> runs a test teardown function</p>
-          </section>
-
-          <section>
-            <p><code>spyOn</code> allows for easy mocking</p>
-
-            <pre><code class="javascript" data-trim>
-describe('timeProvider', function () {
-  // setup
-
-  it('tracks calls and arguments', function () {
-    spyOn(timeProvider, 'dayOfWeek').and.returnValue('Monday');
-
-    var result = timeProvider.dayOfWeek('capital');
-
-
-
-
-
-  });
-});
-            </code></pre>
-          </section>
-
-          <section>
-            <p><code>spyOn</code> allows for easy mocking</p>
-
-            <pre><code class="javascript" data-trim>
-describe('timeProvider', function () {
-  // setup
-
-  it('tracks calls and arguments', function () {
-    spyOn(timeProvider, 'dayOfWeek').and.returnValue('Monday');
-
-    var result = timeProvider.dayOfWeek('capital');
-
-    expect(result).toEqual('Monday');
-
-
-
-  });
-});
-            </code></pre>
-          </section>
-
-          <section>
-            <p><code>spyOn</code> allows for easy mocking</p>
-
-            <pre><code class="javascript" data-trim>
-describe('timeProvider', function () {
-  // setup
-
-  it('tracks calls and arguments', function () {
-    spyOn(timeProvider, 'dayOfWeek').and.returnValue('Monday');
-
-    var result = timeProvider.dayOfWeek('capital');
-
-    expect(result).toEqual('Monday');
-    expect(timeProvider.dayOfWeek).toHaveBeenCalled();
-
-
-  });
-});
-            </code></pre>
-          </section>
-
-          <section>
-            <p><code>spyOn</code> allows for easy mocking</p>
-
-            <pre><code class="javascript" data-trim>
-describe('timeProvider', function () {
-  // setup
-
-  it('tracks calls and arguments', function () {
-    spyOn(timeProvider, 'dayOfWeek').and.returnValue('Monday');
-
-    var result = timeProvider.dayOfWeek('capital');
-
-    expect(result).toEqual('Monday');
-    expect(timeProvider.dayOfWeek).toHaveBeenCalled();
-    expect(timeProvider.dayOfWeek).toHaveBeenCalledWith('capital');
-
-  });
-});
-            </code></pre>
-          </section>
-
-          <section>
-          <p><code>spyOn</code> allows for easy mocking</p>
-
-          <pre><code class="javascript" data-trim>
-describe('timeProvider', function () {
-  // setup
-
-  it('tracks calls and arguments', function () {
-    spyOn(timeProvider, 'dayOfWeek').and.returnValue('Monday');
-
-    var result = timeProvider.dayOfWeek('capital');
-
-    expect(result).toEqual('Monday');
-    expect(timeProvider.dayOfWeek).toHaveBeenCalled();
-    expect(timeProvider.dayOfWeek).toHaveBeenCalledWith('capital');
-    expect(timeProvider.dayOfWeek.calls.count()).toEqual(1);
-  });
-});
-					</code></pre>
-
-          </section>
-
-          <section>
-            <h2>Testing Asynchronous Code</h2>
-
-            <p>
-              Jasmine passes a <code>done</code> function to the test function.
-            </p>
-
-            <pre><code class="javascript" data-trim>
-it('takes done as an argument', function (done) {
-
-});
-            </code></pre>
-          </section>
-
-          <section>
-            <h2>Testing Asynchronous Code</h2>
-
-            <p>
-              A test will not pass until <code>done</code> has been called.
-            </p>
-
-            <pre><code class="javascript" data-trim>
-it('takes done as an argument', function (done) {
-  done();
-});
-            </code></pre>
-          </section>
-
-          <section>
-            <h2>Testing Asynchronous Code</h2>
-
-            <p>
-              By default, Jasmine will wait five seconds for <code>done</code> to be called
-              before failing a test.
-            </p>
-
-            <pre><code class="javascript" data-trim>
-it('will pass if completed before timeout', function (done) {
-  setTimeout(function () {
-    done();
-  }, 4000);
-});
-
-it('will fail if completed after timeout', function (done) {
-  setTimeout(function () {
-    done();
-  }, 6000);
-});
-            </code></pre>
-          </section>
+        <section>
+          <h2>TDD example with Jasmine</h2>
+          <ul>
+            <li class="fragment">Testing framework for javascript</li>
+            <li class="fragment">Developed by Pivotal Labs</li>
+            <li class="fragment">Framework independent</li>
+          </ul>
+          <div class="jasmine logo"></div>
+        </section>
+
+        <section>
+
+        </section>
 
         <!--AngularJS-->
         <section>
@@ -628,7 +385,7 @@ describe('messaging.flashController', function () {
   describe('when the controller loads', function () {
     it('sets the message', function () {
       expect($scope.message).toEqual('Hi!');
-      expect(messagingService.getMessage())
+      expect(messagingService.getMessage)
               .toHaveBeenCalledWith('initial');
     });
   });
@@ -645,7 +402,7 @@ describe('messaging.flashController', function () {
   describe('when the controller loads', function () {
     it('sets the message', function () {
       expect($scope.message).toEqual('Hi!');
-      expect(messagingService.getMessage())
+      expect(messagingService.getMessage)
               .toHaveBeenCalledWith('initial');
     });
   });
@@ -779,7 +536,7 @@ describe('messaging.flashController', function () {
       $timeout.flush(4900);
       expect($scope.message).toEqual('');
 
-      $timeout.flush(5100);
+      $timeout.flush(200);
 
       expect($scope.message).toEqual('Hi!');
       expect(messagingService.getMessage)
@@ -803,7 +560,7 @@ describe('messaging.flashController', function () {
       $timeout.flush(4900);
       expect($scope.message).toEqual('');
 
-      $timeout.flush(5100);
+      $timeout.flush(200);
 
       expect($scope.message).toEqual('Hi!');
       expect(messagingService.getMessage)
@@ -1202,7 +959,13 @@ angular.module('users')
             </code></pre>
         </section>
 
-
+        <section>
+          <ul>
+            <li class="fragment">TDD results in clean, maintainable code.</li>
+            <li class="fragment">You should be testing your javascript.</li>
+            <li class="fragment">If you're new to testing javascript, Jasmine + AngularJS is a great way to start!</li>
+          </ul>
+        </section>
 
         <section>
           <h1>Thanks!</h1>

@@ -1,7 +1,3 @@
-function square(x) {
-  if (typeof x === 'number')
-    return x * x;
-}
 
 angular.module('users', []);
 angular.module('twitterAdapter', []);
