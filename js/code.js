@@ -1,20 +1,11 @@
-function addString(values) {
-  var numbers = values.split(',');
-  var sum = 0;
+function addStrings(first, second) {
+  function parseNumber(string) {
+    var number = parseInt(string);
 
-  function getValue(number) {
-    var parsedValue = parseInt(number);
-    if (isNaN(parsedValue))
-      return 0;
-
-    return parsedValue;
+    return isNaN(number) ? 0 : number;
   }
 
-  numbers.forEach(function (number) {
-    sum += getValue(number);
-  });
-
-  return sum;
+  return parseNumber(first) + parseNumber(second);
 }
 
 angular.module('users', []);

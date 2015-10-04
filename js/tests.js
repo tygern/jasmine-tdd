@@ -1,17 +1,14 @@
-describe('addString', function () {
-  it('works with one number', function () {
-    expect(addString('3')).toEqual(3);
-    expect(addString('5')).toEqual(5);
+describe('addStrings', function () {
+  it('correctly adds two numbers', function () {
+    expect(addStrings('3', '5')).toEqual(8);
+    expect(addStrings('4', '6')).toEqual(10);
   });
 
-  it('works with multiple numbers', function () {
-    expect(addString('3,5')).toEqual(8);
-    expect(addString('3,5,6')).toEqual(14);
-  });
+  //...
 
-  it('ignores non-numerical and empty values', function () {
-    expect(addString('3,a')).toEqual(3);
-    expect(addString('3,')).toEqual(3);
+  it('treats non-numbers as 0', function () {
+    expect(addStrings('a', '6')).toEqual(6);
+    expect(addStrings('2', '')).toEqual(2);
   });
 });
 

@@ -167,7 +167,7 @@
 
         <!--Jasmine-->
         <section>
-          <h2>TDD example with Jasmine</h2>
+          <h2>Jasmine</h2>
           <ul>
             <li class="fragment">Testing framework for javascript</li>
             <li class="fragment">Developed by Pivotal Labs</li>
@@ -177,7 +177,191 @@
         </section>
 
         <section>
+          <h2>Example</h2>
+          <p>Function <code>addString</code> that adds integers passed as strings.</p>
+        </section>
 
+        <section>
+          <h2>Add a Test</h2>
+            <pre><code class="javascript" data-trim>
+describe('addStrings', function () {
+  it('correctly adds two numbers', function () {
+    expect(addStrings('3', '5')).toEqual(8);
+    expect(addStrings('4', '6')).toEqual(10);
+  });
+});
+            </code></pre>
+        </section>
+
+        <section data-background="#b5533c">
+          <h2>Add a Test</h2>
+            <pre><code class="javascript" data-trim>
+describe('addStrings', function () {
+  it('correctly adds two numbers', function () {
+    expect(addStrings('3', '5')).toEqual(8);
+    expect(addStrings('4', '6')).toEqual(10);
+  });
+});
+            </code></pre>
+
+            <code class="failure">
+              ReferenceError: addStrings is not defined
+            </code>
+        </section>
+
+        <section>
+          <h2>Make it pass</h2>
+            <pre><code class="javascript" data-trim>
+describe('addStrings', function () {
+  it('correctly adds two numbers', function () {
+    expect(addStrings('3', '5')).toEqual(8);
+    expect(addStrings('4', '6')).toEqual(10);
+  });
+});
+            </code></pre>
+            <pre><code class="javascript" data-trim>
+function addStrings() {
+
+}
+            </code></pre>
+        </section>
+
+        <section data-background="#b5533c">
+          <h2>Make it pass</h2>
+            <pre><code class="javascript" data-trim>
+describe('addStrings', function () {
+  it('correctly adds two numbers', function () {
+    expect(addStrings('3', '5')).toEqual(8);
+    expect(addStrings('4', '6')).toEqual(10);
+  });
+});
+            </code></pre>
+            <pre><code class="javascript" data-trim>
+function addStrings() {
+
+}
+            </code></pre>
+
+            <code class="failure">
+              Expected undefined to equal 8.
+            </code>
+        </section>
+
+        <section>
+          <h2>Make it pass</h2>
+            <pre><code class="javascript" data-trim>
+describe('addStrings', function () {
+  it('correctly adds two numbers', function () {
+    expect(addStrings('3', '5')).toEqual(8);
+    expect(addStrings('4', '6')).toEqual(10);
+  });
+});
+            </code></pre>
+            <pre><code class="javascript" data-trim>
+function addStrings() {
+  return 8;
+}
+            </code></pre>
+        </section>
+
+        <section data-background="#b5533c">
+          <h2>Make it pass</h2>
+            <pre><code class="javascript" data-trim>
+describe('addStrings', function () {
+  it('correctly adds two numbers', function () {
+    expect(addStrings('3', '5')).toEqual(8);
+    expect(addStrings('4', '6')).toEqual(10);
+  });
+});
+            </code></pre>
+            <pre><code class="javascript" data-trim>
+function addStrings() {
+  return 8;
+}
+            </code></pre>
+
+            <code class="failure">
+              Expected 8 to equal 10.
+            </code>
+        </section>
+
+        <section>
+          <h2>Make it pass</h2>
+            <pre><code class="javascript" data-trim>
+describe('addStrings', function () {
+  it('correctly adds two numbers', function () {
+    expect(addStrings('3', '5')).toEqual(8);
+    expect(addStrings('4', '6')).toEqual(10);
+  });
+});
+            </code></pre>
+            <pre><code class="javascript" data-trim>
+function addStrings(first, second) {
+  return parseInt(first) + parseInt(second);
+}
+            </code></pre>
+        </section>
+
+        <section data-background="#4d7e65">
+          <h2>Make it pass</h2>
+            <pre><code class="javascript" data-trim>
+describe('addStrings', function () {
+  it('correctly adds two numbers', function () {
+    expect(addStrings('3', '5')).toEqual(8);
+    expect(addStrings('4', '6')).toEqual(10);
+  });
+});
+            </code></pre>
+            <pre><code class="javascript" data-trim>
+function addStrings(first, second) {
+  return parseInt(first) + parseInt(second);
+}
+            </code></pre>
+        </section>
+
+        <section>
+          <h2>Requirement</h2>
+          <p>Handle bad data. Count non-numbers as 0.</p>
+        </section>
+
+        <section>
+          <h2>Add a test</h2>
+            <pre><code class="javascript" data-trim>
+describe('addStrings', function () {
+  //...
+  it('treats non-numbers as 0', function () {
+    expect(addStrings('a', '6')).toEqual(6);
+    expect(addStrings('2', '')).toEqual(2);
+  });
+});
+            </code></pre>
+            <pre><code class="javascript" data-trim>
+function addStrings(first, second) {
+  return parseInt(first) + parseInt(second);
+}
+            </code></pre>
+        </section>
+
+        <section data-background="#b5533c">
+          <h2>Add a test</h2>
+            <pre><code class="javascript" data-trim>
+describe('addStrings', function () {
+  //...
+  it('treats non-numbers as 0', function () {
+    expect(addStrings('a', '6')).toEqual(6);
+    expect(addStrings('2', '')).toEqual(2);
+  });
+});
+            </code></pre>
+            <pre><code class="javascript" data-trim>
+function addStrings(first, second) {
+  return parseInt(first) + parseInt(second);
+}
+            </code></pre>
+
+          <code class="failure">
+            Expected NaN to equal 6.
+          </code>
         </section>
 
         <!--AngularJS-->
