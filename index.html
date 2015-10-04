@@ -469,6 +469,82 @@ function addStrings(first, second) {
             </code></pre>
         </section>
 
+        <section>
+          <h2>Refactor</h2>
+            <pre><code class="javascript" data-trim>
+describe('addStrings', function () {
+  //...
+  it('treats non-numbers as 0', function () {
+    expect(addStrings('a', '6')).toEqual(6);
+    expect(addStrings('2', '')).toEqual(2);
+  });
+});
+            </code></pre>
+            <pre><code class="javascript" data-trim>
+function addStrings(first, second) {
+  var firstNumber = parseInt(first);
+  if(isNaN(firstNumber)) {
+    firstNumber = 0;
+  }
+
+  var secondNumber = parseInt(second);
+  if(isNaN(secondNumber)) {
+    secondNumber = 0;
+  }
+
+  return firstNumber + secondNumber;
+}
+            </code></pre>
+        </section>
+
+        <section>
+          <h2>Refactor</h2>
+            <pre><code class="javascript" data-trim>
+describe('addStrings', function () {
+  //...
+  it('treats non-numbers as 0', function () {
+    expect(addStrings('a', '6')).toEqual(6);
+    expect(addStrings('2', '')).toEqual(2);
+  });
+});
+            </code></pre>
+            <pre><code class="javascript" data-trim>
+function addStrings(first, second) {
+  function parseNumber(string) {
+    var number = parseInt(string);
+
+    return isNaN(number) ? 0 : number;
+  }
+
+  return parseNumber(first) + parseNumber(second);
+}
+            </code></pre>
+        </section>
+
+        <section data-background="#4d657e">
+          <h2>Refactor</h2>
+            <pre><code class="javascript" data-trim>
+describe('addStrings', function () {
+  //...
+  it('treats non-numbers as 0', function () {
+    expect(addStrings('a', '6')).toEqual(6);
+    expect(addStrings('2', '')).toEqual(2);
+  });
+});
+            </code></pre>
+            <pre><code class="javascript" data-trim>
+function addStrings(first, second) {
+  function parseNumber(string) {
+    var number = parseInt(string);
+
+    return isNaN(number) ? 0 : number;
+  }
+
+  return parseNumber(first) + parseNumber(second);
+}
+            </code></pre>
+        </section>
+
         <!--AngularJS-->
         <section>
           <h2>What is Angular?</h2>
