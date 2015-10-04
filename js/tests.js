@@ -1,5 +1,18 @@
-describe('pushThenDouble', function () {
+describe('addString', function () {
+  it('works with one number', function () {
+    expect(addString('3')).toEqual(3);
+    expect(addString('5')).toEqual(5);
+  });
 
+  it('works with multiple numbers', function () {
+    expect(addString('3,5')).toEqual(8);
+    expect(addString('3,5,6')).toEqual(14);
+  });
+
+  it('ignores non-numerical and empty values', function () {
+    expect(addString('3,a')).toEqual(3);
+    expect(addString('3,')).toEqual(3);
+  });
 });
 
 describe('messaging.flashController', function () {

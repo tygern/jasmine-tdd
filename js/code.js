@@ -1,3 +1,21 @@
+function addString(values) {
+  var numbers = values.split(',');
+  var sum = 0;
+
+  function getValue(number) {
+    var parsedValue = parseInt(number);
+    if (isNaN(parsedValue))
+      return 0;
+
+    return parsedValue;
+  }
+
+  numbers.forEach(function (number) {
+    sum += getValue(number);
+  });
+
+  return sum;
+}
 
 angular.module('users', []);
 angular.module('twitterAdapter', []);
@@ -20,8 +38,8 @@ angular.module('messaging')
   });
 
 angular.module('messaging')
-  .controller('messaging.flashController', function($scope, $timeout,
-                                                    messagingService) {
+  .controller('messaging.flashController', function ($scope, $timeout,
+                                                     messagingService) {
     function setMessage(type) {
       $scope.message = messagingService.getMessage(type);
     }
@@ -42,7 +60,7 @@ angular.module('users')
   });
 
 angular.module('users')
-  .controller('users.currentController', function($scope, usersService) {
+  .controller('users.currentController', function ($scope, usersService) {
     function setCurrentUser(user) {
       $scope.currentUser = user;
     }
