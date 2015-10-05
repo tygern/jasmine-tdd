@@ -147,8 +147,8 @@ function increment(number) {
           <h2>Why practice TDD?</h2>
           <p class="highlight blue">Leads to simple design</p>
           <ul>
-            <li class="fragment">Solution uses minimal amount of code</li>
             <li class="fragment">Tests are first client of code</li>
+            <li class="fragment">Solution uses minimal amount of code</li>
           </ul>
         </section>
 
@@ -166,7 +166,7 @@ function increment(number) {
           <p class="highlight blue">Reduces number of defects</p>
           <ul>
             <li class="fragment">Maintainable code</li>
-            <li class="fragment">Deploy any time</li>
+            <li class="fragment">Deploy confidently</li>
           </ul>
         </section>
 
@@ -184,6 +184,42 @@ function increment(number) {
         <section>
           <h2>Example</h2>
           <p>Function <code>addStrings</code> that adds integers passed as strings.</p>
+        </section>
+
+        <section>
+          <h2>Add a Test</h2>
+            <pre><code class="javascript" data-trim>
+describe('addStrings', function () {
+
+
+
+
+});
+            </code></pre>
+        </section>
+
+        <section>
+          <h2>Add a Test</h2>
+            <pre><code class="javascript" data-trim>
+describe('addStrings', function () {
+  it('correctly adds two numbers', function () {
+
+
+  });
+});
+            </code></pre>
+        </section>
+
+        <section>
+          <h2>Add a Test</h2>
+            <pre><code class="javascript" data-trim>
+describe('addStrings', function () {
+  it('correctly adds two numbers', function () {
+    expect(addStrings('3', '5')).toEqual(8);
+
+  });
+});
+            </code></pre>
         </section>
 
         <section>
@@ -327,6 +363,42 @@ function addStrings(first, second) {
         <section>
           <h2>Requirement</h2>
           <p>Handle bad data. Count non-numbers as 0.</p>
+        </section>
+
+        <section>
+          <h2>Add a test</h2>
+            <pre><code class="javascript" data-trim>
+describe('addStrings', function () {
+  //...
+  it('treats non-numbers as 0', function () {
+
+
+  });
+});
+            </code></pre>
+            <pre><code class="javascript" data-trim>
+function addStrings(first, second) {
+  return parseInt(first) + parseInt(second);
+}
+            </code></pre>
+        </section>
+
+        <section>
+          <h2>Add a test</h2>
+            <pre><code class="javascript" data-trim>
+describe('addStrings', function () {
+  //...
+  it('treats non-numbers as 0', function () {
+    expect(addStrings('a', '6')).toEqual(6);
+
+  });
+});
+            </code></pre>
+            <pre><code class="javascript" data-trim>
+function addStrings(first, second) {
+  return parseInt(first) + parseInt(second);
+}
+            </code></pre>
         </section>
 
         <section>
