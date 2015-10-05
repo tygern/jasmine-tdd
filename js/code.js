@@ -14,7 +14,7 @@ angular.module('messaging', [
   'twitterAdapter'
 ]);
 
-angular.module('myApplication', [
+angular.module('greeterApplication', [
   'users',
   'messaging'
 ]);

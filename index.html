@@ -687,16 +687,16 @@ angular.module('messaging')
           <p>Modules allow building application with modules.</p>
 
           <pre><code class="javascript">
-angular.module('users', []);           //      myApplication
-angular.module('twitterAdapter', []);  //         /     \
-angular.module('messaging', [          //        /       \
-  'twitterAdapter'                     //       /         \
-]);                                    //  messaging     users
-                                       //      |
-angular.module('myApplication', [      //      |
-  'users',                             //      |
-  'messaging'                          // twitterAdapter
-]);                                    //
+angular.module('users', []);            //   greeterApplication
+angular.module('twitterAdapter', []);   //         /     \
+angular.module('messaging', [           //        /       \
+  'twitterAdapter'                      //       /         \
+]);                                     //  messaging     users
+                                        //      |
+angular.module('greeterApplication', [  //      |
+  'users',                              //      |
+  'messaging'                           // twitterAdapter
+]);                                     //
           </code></pre>
         </section>
 
@@ -801,14 +801,14 @@ describe('messaging.flashController', function () {
 
         <section>
           <h2>Example!</h2>
-          <p>Start to build <code>myApplication</code></p>
+          <p>Start to build <code>greeterApplication</code></p>
         </section>
 
         <section>
           <h2>Feature</h2>
           <p>Show initial greeting when the page loads</p>
           <pre><code class="html" data-trim>
-<div ng-app="myApplication">
+<div ng-app="greeterApplication">
   <div ng-controller="messaging.flashController">
     <h3>{{message}}</h3>
   </div>
@@ -973,7 +973,7 @@ angular.module('messaging')
             <h2>Feature</h2>
             <p>Change the message to prompt the user after 5 seconds</p>
           <pre><code class="html" data-trim>
-<div ng-app="myApplication">
+<div ng-app="greeterApplication">
   <div ng-controller="messaging.flashController">
     <h3>{{message}}</h3>
   </div>
@@ -1223,7 +1223,7 @@ angular.module('messaging')
           <h2>Feature</h2>
           <p>Show the current user</p>
           <pre><code class="html" data-trim>
-<div ng-app="myApplication">
+<div ng-app="greeterApplication">
   <div ng-controller="users.currentController">
     <h2>Welcome {{currentUser}}!</h2>
   </div>
