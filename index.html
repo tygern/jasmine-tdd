@@ -777,11 +777,19 @@ describe('messaging.flashController', function () {
 
         <section>
           <h2>Example!</h2>
+          <p>Start to build <code>myApplication</code></p>
         </section>
 
         <section>
           <h2>Feature</h2>
           <p>Show initial greeting when the page loads</p>
+          <pre><code class="html" data-trim>
+<div ng-app="myApplication">
+  <div ng-controller="messaging.flashController">
+    <h3>{{message}}</h3>
+  </div>
+</div>
+          </code></pre>
         </section>
 
           <section>
@@ -940,6 +948,13 @@ angular.module('messaging')
           <section>
             <h2>Feature</h2>
             <p>Change the message to prompt the user after 5 seconds</p>
+          <pre><code class="html" data-trim>
+<div ng-app="myApplication">
+  <div ng-controller="messaging.flashController">
+    <h3>{{message}}</h3>
+  </div>
+</div>
+          </code></pre>
           </section>
 
           <section>
@@ -1183,6 +1198,17 @@ angular.module('messaging')
         <section>
           <h2>Feature</h2>
           <p>Show the current user</p>
+          <pre><code class="html" data-trim>
+<div ng-app="myApplication">
+  <div ng-controller="users.currentController">
+    <h2>Welcome {{currentUser}}!</h2>
+  </div>
+
+  <div ng-controller="messaging.flashController">
+    <h3>{{message}}</h3>
+  </div>
+</div>
+          </code></pre>
         </section>
 
         <section>
@@ -1493,6 +1519,10 @@ angular.module('users')
     usersService.getCurrent().then(setCurrentUser);
   });
             </code></pre>
+        </section>
+
+        <section data-background="#4d657e">
+          <h2>Done!</h2>
         </section>
 
         <section>
