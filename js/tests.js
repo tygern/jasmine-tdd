@@ -4,8 +4,6 @@ describe('addStrings', function () {
     expect(addStrings('4', '6')).toEqual(10);
   });
 
-  //...
-
   it('treats non-numbers as 0', function () {
     expect(addStrings('a', '6')).toEqual(6);
     expect(addStrings('2', '')).toEqual(2);

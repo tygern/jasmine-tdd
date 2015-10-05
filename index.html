@@ -781,6 +781,26 @@ describe('messaging.flashController', function () {
 
             <code class="failure">
 Expected undefined to equal 'Hi!'.
+            </code>
+          </section>
+
+          <section data-background="#b5533c">
+            <h2>Add a Test</h2>
+            <pre><code class="javascript" data-trim>
+describe('messaging.flashController', function () {
+  // setup
+
+  describe('when the controller loads', function () {
+    it('sets the message', function () {
+      expect($scope.message).toEqual('Hi!');
+      expect(messagingService.getMessage)
+              .toHaveBeenCalledWith('initial');
+    });
+  });
+});
+            </code></pre>
+
+            <code class="failure">
 Expected spy getMessage to have been called with [ 'initial' ] but it was never called.
             </code>
           </section>
@@ -944,6 +964,38 @@ describe('messaging.flashController', function () {
   });
 });
             </code></pre>
+
+            <code class="failure">
+Expected '' to equal 'Hi!'.
+            </code>
+          </section>
+
+          <section data-background="#b5533c">
+            <h2>Add a Test</h2>
+            <pre><code class="javascript" data-trim>
+describe('messaging.flashController', function () {
+  // tests and setup
+
+  describe('after waiting 5 seconds', function () {
+    it('shows the \'prompt\' message', function () {
+      $scope.message = '';
+
+      $timeout.flush(4900);
+      expect($scope.message).toEqual('');
+
+      $timeout.flush(200);
+
+      expect($scope.message).toEqual('Hi!');
+      expect(messagingService.getMessage)
+              .toHaveBeenCalledWith('prompt');
+    });
+  });
+});
+            </code></pre>
+
+            <code class="failure">
+Expected spy getMessage to have been...
+            </code>
           </section>
 
         <section>
@@ -1236,6 +1288,30 @@ describe('when the controller loads', function () {
   });
 });
             </code></pre>
+
+          <code class="failure">
+Expected undefined to equal 'Loading'.
+          </code>
+        </section>
+
+        <section data-background="#b5533c">
+          <h2>Add a Test</h2>
+            <pre><code class="javascript" data-trim>
+describe('when the controller loads', function () {
+  it('sets the current user', function () {
+    expect($scope.currentUser).toEqual('Loading');
+
+    deferred.resolve('@walken20');
+    $scope.$apply();
+
+    expect($scope.currentUser).toEqual('@walken20');
+  });
+});
+            </code></pre>
+
+          <code class="failure">
+Expected undefined to equal '@walken20'.
+          </code>
         </section>
 
         <section>
