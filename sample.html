@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Sample</title>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+  <script type="text/javascript" src="js/code.js"></script>
+</head>
+
+<body>
+<div ng-app="myApplication">
+  <div ng-controller="users.currentController">
+    <h2>Welcome {{currentUser}}!</h2>
+  </div>
+
+  <div ng-controller="messaging.flashController">
+    <h3>{{message}}</h3>
+  </div>
+</div>
+</body>
+</html>

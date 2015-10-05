@@ -686,15 +686,14 @@ angular.module('messaging')
 
           <p>Modules allow building application from loosely-coupled, highly-cohesive components.</p>
 
-          <pre><code class="javascript" data-trim>
-angular.module('users', []);           //
-angular.module('twitterAdapter', []);  //      myApplication
-angular.module('messaging', [          //         /     \
-  'twitterAdapter'                     //        /       \
-]);                                    //       /         \
-                                       //  messaging     users
+          <pre><code class="javascript">
+angular.module('users', []);           //      myApplication
+angular.module('twitterAdapter', []);  //         /     \
+angular.module('messaging', [          //        /       \
+  'twitterAdapter'                     //       /         \
+]);                                    //  messaging     users
+                                       //      |
 angular.module('myApplication', [      //      |
-  'ui.router',                         //      |
   'users',                             //      |
   'messaging'                          // twitterAdapter
 ]);                                    //
@@ -1539,6 +1538,7 @@ angular.module('users')
           <ul class="top-margin final-words">
             <li>See slides at <a href="http://tygern.github.io/jasmine-tdd">tygern.github.io/jasmine-tdd</a></li>
             <li>Run tests from slides <a href="./tests.html">here</a></li>
+            <li>See the application <a href="./sample.html">here</a></li>
           </ul>
 
           <div class="bottom-logos">

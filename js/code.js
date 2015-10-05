@@ -15,7 +15,6 @@ angular.module('messaging', [
 ]);
 
 angular.module('myApplication', [
-  'ui.router',
   'users',
   'messaging'
 ]);
@@ -23,7 +22,12 @@ angular.module('myApplication', [
 angular.module('messaging')
   .service('messagingService', function () {
     return {
-      getMessage: function () {
+      getMessage: function (type) {
+        if(type === 'initial') {
+          return 'It\'s nice to see you.';
+        } else if (type === 'prompt') {
+          return 'Oh, you\'re still here.';
+        }
       }
     }
   });
@@ -43,9 +47,12 @@ angular.module('messaging')
   });
 
 angular.module('users')
-  .service('usersService', function () {
+  .service('usersService', function ($q) {
     return {
       getCurrent: function () {
+        var deferred = $q.defer();
+        deferred.resolve('@walken20');
+        return deferred.promise;
       }
     }
   });
