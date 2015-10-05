@@ -60,8 +60,9 @@
         </section>
 
         <section>
+          <h2>Goals</h2>
           <ul>
-            <li>You should be testing your javascript.</li>
+            <li class="fragment">You should be testing your javascript.</li>
             <li class="fragment">TDD results in clean, maintainable code.</li>
             <li class="fragment">Jasmine + AngularJS is a great way to start!</li>
           </ul>
@@ -154,18 +155,17 @@ function increment(number) {
 
         <section>
           <h2>Why practice TDD?</h2>
-          <p class="highlight blue">Allows refactoring with confidence</p>
+          <p class="highlight blue">Allows frequent refactoring</p>
           <ul>
-            <li class="fragment">Regressions are uncommon</li>
             <li class="fragment">Code improves over time</li>
           </ul>
         </section>
 
         <section>
           <h2>Why practice TDD?</h2>
-          <p class="highlight blue">Reduces number of defects</p>
+          <p class="highlight blue">Quickly add features</p>
           <ul>
-            <li class="fragment">Maintainable code</li>
+            <li class="fragment">Regressions are uncommon</li>
             <li class="fragment">Deploy confidently</li>
           </ul>
         </section>
@@ -173,10 +173,11 @@ function increment(number) {
         <!--Jasmine-->
         <section>
           <h2>Jasmine</h2>
+          <p class="highlight blue">javascript testing framework</p>
           <ul>
-            <li class="fragment">Testing framework for javascript</li>
             <li class="fragment">Developed by Pivotal Labs</li>
             <li class="fragment">Framework independent</li>
+            <li class="fragment">Runs anywhere</li>
           </ul>
           <div class="jasmine logo"></div>
         </section>
@@ -624,12 +625,11 @@ function addStrings(first, second) {
 
         <!--AngularJS-->
         <section>
-          <h2>What is Angular?</h2>
+          <h2>Angular</h2>
+          <p class="highlight blue">javascript web framework</p>
           <ul>
-            <li class="fragment">Javascript framework for web applications</li>
             <li class="fragment">Developed by Google</li>
             <li class="fragment">It's testable!</li>
-            <li class="fragment">Version 1 or 2?</li>
           </ul>
           <div class="angular logo"></div>
         </section>
@@ -647,6 +647,7 @@ function addStrings(first, second) {
 
           <div class="fragment" data-fragment-index="1">
             <p>+</p>
+          </div>
 
             <pre><code class="javascript" data-trim>
 angular.module('messaging')
@@ -654,7 +655,6 @@ angular.module('messaging')
     $scope.message = 'hello';
   });
             </code></pre>
-          </div>
 
           <div class="fragment" data-fragment-index="1">
             <p>=</p>
@@ -684,7 +684,7 @@ angular.module('messaging')
         <section>
           <h2>Modules</h2>
 
-          <p>Modules allow building application from loosely-coupled, highly-cohesive components.</p>
+          <p>Modules allow building application with modules.</p>
 
           <pre><code class="javascript">
 angular.module('users', []);           //      myApplication
@@ -728,6 +728,31 @@ describe('messaging.flashController', function () {
           <h2>Dependency injection</h2>
 
           <p>We can inject <code>$scope</code> in tests</p>
+
+          <pre><code class="javascript" data-trim>
+describe('messaging.flashController', function () {
+  var $scope;
+  beforeEach(module('messaging'));
+
+  beforeEach(inject(function ($rootScope) {
+    $scope = $rootScope.$new();
+
+
+
+
+
+
+
+  }));
+  // tests go here
+});
+            </code></pre>
+        </section>
+
+        <section>
+          <h2>Dependency injection</h2>
+
+          <p>and pass the <code>$scope</code> to a <code>$controller</code>.</p>
 
           <pre><code class="javascript" data-trim>
 describe('messaging.flashController', function () {
