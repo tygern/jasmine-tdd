@@ -725,9 +725,48 @@ describe('messaging.flashController', function () {
         </section>
 
         <section>
-          <h2>Dependency injection</h2>
+          <h2>Example!</h2>
+          <p>Start to build <code>greeterApplication</code></p>
+        </section>
 
-          <p>We can inject <code>$scope</code> in tests</p>
+        <section>
+          <h2>Feature</h2>
+          <p>Show initial greeting when the page loads</p>
+          <pre><code class="html" data-trim>
+<div ng-app="greeterApplication">
+  <div ng-controller="messaging.flashController">
+    <h3>{{message}}</h3>
+  </div>
+</div>
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Test setup</h2>
+
+          <pre><code class="javascript" data-trim>
+describe('messaging.flashController', function () {
+
+  beforeEach(module('messaging'));
+
+
+
+
+
+
+
+
+
+
+
+
+  // tests go here
+});
+            </code></pre>
+        </section>
+
+        <section>
+          <h2>Test setup</h2>
 
           <pre><code class="javascript" data-trim>
 describe('messaging.flashController', function () {
@@ -744,15 +783,14 @@ describe('messaging.flashController', function () {
 
 
   }));
+
   // tests go here
 });
             </code></pre>
         </section>
 
         <section>
-          <h2>Dependency injection</h2>
-
-          <p>and pass the <code>$scope</code> to a <code>$controller</code>.</p>
+          <h2>Test setup</h2>
 
           <pre><code class="javascript" data-trim>
 describe('messaging.flashController', function () {
@@ -769,15 +807,14 @@ describe('messaging.flashController', function () {
 
     });
   }));
+
   // tests go here
 });
             </code></pre>
         </section>
 
         <section>
-          <h2>Dependency injection</h2>
-
-          <p>We can also inject our own mock objects.</p>
+          <h2>Test setup</h2>
 
           <pre><code class="javascript" data-trim>
 describe('messaging.flashController', function () {
@@ -794,26 +831,10 @@ describe('messaging.flashController', function () {
       messagingService: messagingService
     });
   }));
+
   // tests go here
 });
             </code></pre>
-        </section>
-
-        <section>
-          <h2>Example!</h2>
-          <p>Start to build <code>greeterApplication</code></p>
-        </section>
-
-        <section>
-          <h2>Feature</h2>
-          <p>Show initial greeting when the page loads</p>
-          <pre><code class="html" data-trim>
-<div ng-app="greeterApplication">
-  <div ng-controller="messaging.flashController">
-    <h3>{{message}}</h3>
-  </div>
-</div>
-          </code></pre>
         </section>
 
           <section>
@@ -1563,7 +1584,7 @@ angular.module('users')
           <ul class="top-margin final-words">
             <li>See slides at <a href="http://tygern.github.io/jasmine-tdd">tygern.github.io/jasmine-tdd</a></li>
             <li>Run tests from slides <a href="./tests.html">here</a></li>
-            <li>See the application <a href="./sample.html">here</a></li>
+            <li>See the application <a href="./greeter.html">here</a></li>
           </ul>
 
           <div class="bottom-logos">
