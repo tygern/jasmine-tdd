@@ -641,7 +641,7 @@ function addStrings(first, second) {
 
           <pre><code class="html" data-trim>
 <div ng-controller="messaging.flashController">
-  <h2>{{message}}</h2>
+  <h3>{{message}}</h3>
 </div>
           </code></pre>
 
@@ -698,30 +698,6 @@ angular.module('greeterApplication', [  //      |
   'messaging'                           // twitterAdapter
 ]);                                     //
           </code></pre>
-        </section>
-
-        <section>
-          <h2>Modules</h2>
-
-          <p>Angular objects</p>
-
-          <pre><code class="javascript" data-trim>
-angular.module('messaging')
-  .controller('messaging.flashController', function () {
-  });
-          </code></pre>
-
-          <p>and tests</p>
-
-          <pre><code class="javascript" data-trim>
-describe('messaging.flashController', function () {
-  beforeEach(module('messaging'));
-
-  // tests go here
-)};
-          </code></pre>
-
-          <p>are isolated to a single module.</p>
         </section>
 
         <section>
